@@ -53,6 +53,7 @@ debug
 !build.zig
 !docs/build.md
 !/android/bin/libllama.so
+!/android/bin/libggml.so
 /llama-*
 /vulkan-shaders-gen
 android-ndk-*
