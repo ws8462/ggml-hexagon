@@ -58,7 +58,7 @@ debug
 !/android/bin/libggml-cpu.so
 !/android/bin/libggml-hexagon.so
 !/android/bin/libllava_shared.so
-!/adnroid/bin/libomp.so
+!/android/bin/libomp.so
 /llama-*
 /vulkan-shaders-gen
 android-ndk-*
