@@ -54,6 +54,10 @@ debug
 !docs/build.md
 !/android/bin/libllama.so
 !/android/bin/libggml.so
+!/android/bin/libggml-base.so
+!/android/bin/libggml-cpu.so
+!/android/bin/libggml-hexagon.so
+!/android/bin/libllava_shared.so
 /llama-*
 /vulkan-shaders-gen
 android-ndk-*
