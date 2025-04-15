@@ -346,7 +346,7 @@ static struct hexagon_appcfg_t g_hexagon_appcfg = {
         .cfgfilename            = "ggml-hexagon.cfg",
 #if defined(__ANDROID__)
 //Android command line program
-        .runtime_libpath        = "/data/data/com.termux/files/home/ggml-hexagon/android/bin",
+        .runtime_libpath        = "/data/local/tmp/",
 #elif defined(__linux__)
         .qnn_runtimelib_path    = "/tmp/",
 #elif defined(_WIN32)
