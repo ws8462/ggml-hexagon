@@ -346,7 +346,7 @@ static struct hexagon_appcfg_t g_hexagon_appcfg = {
         .cfgfilename            = "ggml-hexagon.cfg",
 #if defined(__ANDROID__)
 //Android command line program
-        .runtime_libpath        = "/data/local/tmp/",
+        .runtime_libpath        = "/data/data/com.termux/files/home/ggml-hexagon/android/bin",
 #elif defined(__linux__)
         .qnn_runtimelib_path    = "/tmp/",
 #elif defined(_WIN32)
@@ -4952,15 +4952,17 @@ static int ggmlhexagon_init_dsp(ggml_backend_hexagon_context * ctx) {
         }
     }
 
+    GGMLHEXAGON_LOG_INFO("fuck1");
     hexagon_error = ggmlhexagon_request_status_notifications(domain_id, (void *)STATUS_CONTEXT, ggmlhexagon_pd_status_notifier_callback);
     if (AEE_SUCCESS != hexagon_error) {
         if (AEE_EUNSUPPORTEDAPI != hexagon_error) {
             GGMLHEXAGON_LOG_WARN("error 0x%x: hexagon_request_status_notifications failed", hexagon_error);
         }
+        GGMLHEXAGON_LOG_INFO("fuck2");
         GGMLHEXAGON_LOG_WARN("error 0x%x: failed to compute on domain %d", hexagon_error, domain_id);
         goto bail;
     }
-
+    GGMLHEXAGON_LOG_INFO("fuck3");
     ggmlop_domain_uri_len   = strlen(ggmlop_URI) + MAX_DOMAIN_NAMELEN;
     ggmlop_domain_uri       = (char *)malloc(ggmlop_domain_uri_len);
     snprintf(ggmlop_domain_uri, ggmlop_domain_uri_len, "%s%s", ggmlop_URI, uri);
