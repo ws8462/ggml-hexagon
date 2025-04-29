@@ -6,5 +6,5 @@ C_DEFINES = -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DGGML_USE_HEXAGO
 
 C_INCLUDES = -I/home/kws/ggml-hexagon/src/. -I/home/kws/ggml-hexagon/src/../include -I/home/kws/ggml-hexagon/src/../common -I/home/kws/ggml-hexagon/ggml/src/../include
 
-C_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -march=armv8.4a+dotprod -O3 -DNDEBUG  -fPIE   -march=armv8.7-a -mcpu=cortex-x1 -mtune=cortex-x1 -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion
+C_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -march=armv8.4a+dotprod -fno-limit-debug-info  -fPIE   -march=armv8.7-a -mcpu=cortex-x1 -mtune=cortex-x1 -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion
 
