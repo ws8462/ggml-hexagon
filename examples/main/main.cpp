@@ -515,7 +515,7 @@ int main(int argc, char ** argv) {
 
         is_interacting = params.interactive_first;
     }
-
+    LOG_INF("AAA");
     bool is_antiprompt        = false;
     bool input_echo           = true;
     bool display              = true;
@@ -525,12 +525,12 @@ int main(int argc, char ** argv) {
     int n_remain           = params.n_predict;
     int n_consumed         = 0;
     int n_session_consumed = 0;
-
+    LOG_INF("BBB");
     std::vector<int>   input_tokens;  g_input_tokens  = &input_tokens;
     std::vector<int>   output_tokens; g_output_tokens = &output_tokens;
     std::ostringstream output_ss;     g_output_ss     = &output_ss;
     std::ostringstream assistant_ss; // for storing current assistant message, used in conversation mode
-
+    LOG_INF("CCC");
     // the first thing we will do is to output the prompt, so set color accordingly
     console::set_display(console::prompt);
     display = params.display_prompt;
@@ -539,14 +539,14 @@ int main(int argc, char ** argv) {
 
     // single-token antiprompts
     std::vector<llama_token> antiprompt_token;
-
+    LOG_INF("DDD");
     for (const std::string & antiprompt : params.antiprompt) {
         auto ids = ::common_tokenize(ctx, antiprompt, false, true);
         if (ids.size() == 1) {
             antiprompt_token.push_back(ids[0]);
         }
     }
-
+    LOG_INF("EEE");
     if (llama_model_has_encoder(model)) {
         int enc_input_size = embd_inp.size();
         llama_token * enc_input_buf = embd_inp.data();
@@ -564,10 +564,11 @@ int main(int argc, char ** argv) {
         embd_inp.clear();
         embd_inp.push_back(decoder_start_token_id);
     }
-
+    LOG_INF("FFF");
     while ((n_remain != 0 && !is_antiprompt) || params.interactive) {
         // predict
         if (!embd.empty()) {
+            LOG_INF("HHH");
             // Note: (n_ctx - 4) here is to match the logic for commandline prompt handling via
             // --prompt or --file which uses the same value.
             int max_embd_size = n_ctx - 4;
@@ -690,7 +691,7 @@ int main(int argc, char ** argv) {
                 n_session_consumed = session_tokens.size();
             }
         }
-
+        LOG_INF("GGG");
         embd.clear();
 
         if ((int) embd_inp.size() <= n_consumed && !is_interacting) {
