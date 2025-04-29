@@ -734,7 +734,7 @@ int main(int argc, char ** argv) {
                 }
             }
         }
-
+        LOG_INF("GGG-1");
         // display text
         if (input_echo && display) {
             for (auto id : embd) {
@@ -755,13 +755,13 @@ int main(int argc, char ** argv) {
                 }
             }
         }
-
+        LOG_INF("GGG-2");
         // reset color to default if there is no pending user input
         if (input_echo && (int) embd_inp.size() == n_consumed) {
             console::set_display(console::reset);
             display = true;
         }
-
+        LOG_INF("GGG-3");
         // if not currently processing queued inputs;
         if ((int) embd_inp.size() <= n_consumed) {
             // check for reverse prompt in the last n_prev tokens
@@ -804,7 +804,7 @@ int main(int argc, char ** argv) {
                     LOG_DBG("found antiprompt: %s\n", last_output.c_str());
                 }
             }
-
+            LOG_INF("GGG-4");
             // deal with end of generation tokens in interactive mode
             if (!waiting_for_first_input && llama_vocab_is_eog(vocab, common_sampler_last(smpl))) {
                 LOG_DBG("found an EOG token\n");
@@ -824,7 +824,7 @@ int main(int argc, char ** argv) {
                     LOG("\n");
                 }
             }
-
+            LOG_INF("GGG-5");
             // if current token is not EOG, we add it to current assistant message
             if (params.conversation_mode && !waiting_for_first_input) {
                 const auto id = common_sampler_last(smpl);
@@ -835,7 +835,7 @@ int main(int argc, char ** argv) {
                     is_interacting = false;
                 }
             }
-
+            LOG_INF("GGG-6");
             if ((n_past > 0 || waiting_for_first_input) && is_interacting) {
                 LOG_DBG("waiting for user input\n");
 
@@ -925,7 +925,7 @@ int main(int argc, char ** argv) {
 
                 input_echo = false; // do not echo this again
             }
-
+            LOG_INF("GGG-7");
             if (n_past > 0 || waiting_for_first_input) {
                 if (is_interacting) {
                     common_sampler_reset(smpl);
@@ -939,7 +939,7 @@ int main(int argc, char ** argv) {
                 waiting_for_first_input = false;
             }
         }
-
+        LOG_INF("GGG-8");
         // end of generation
         if (!embd.empty() && llama_vocab_is_eog(vocab, embd.back()) && !(params.interactive)) {
             LOG(" [end of text]\n");
@@ -953,7 +953,7 @@ int main(int argc, char ** argv) {
             is_interacting = true;
         }
     }
-
+    LOG_INF("GGG-10");
     if (!path_session.empty() && params.prompt_cache_all && !params.prompt_cache_ro) {
         LOG("\n%s: saving final output to session file '%s'\n", __func__, path_session.c_str());
         llama_state_save_file(ctx, path_session.c_str(), session_tokens.data(), session_tokens.size());
