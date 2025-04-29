@@ -6111,19 +6111,19 @@ ggml_backend_t ggml_backend_hexagon_init(size_t device, const char * runtime_lib
         GGMLHEXAGON_LOG_ERROR("invalid device %d", device);
         return nullptr;
     }
-
+    GGMLHEXAGON_LOG_DEBUG("AAAAA");
     if (0 != memcmp(runtime_libpath, g_hexagon_appcfg.runtime_libpath, strlen(g_hexagon_appcfg.runtime_libpath))) {
         //re-setting runtime libpath
         ggmlhexagon_set_runtime_path(device, runtime_libpath);
     }
-
+    GGMLHEXAGON_LOG_DEBUG("BBBBB");
     if (nullptr != g_hexagon_mgr[device].backend) {
         GGMLHEXAGON_LOG_DEBUG("backend %d(%s) already loaded", device,
                          ggml_backend_hexagon_get_devname(device));
         GGMLHEXAGON_LOG_DEBUG("leave %s", __func__);
         return g_hexagon_mgr[device].backend;
     }
-
+    GGMLHEXAGON_LOG_DEBUG("CCCCC");
     //don't initialize QNN when hwaccel approach is offload ggml op to Hexagon cDSP directly
     if (HWACCEL_CDSP != g_hexagon_appcfg.hwaccel_approach) {
         qnn_instance * instance = ggmlqnn_init_qnn_instance(device, runtime_libpath);
@@ -6137,7 +6137,7 @@ ggml_backend_t ggml_backend_hexagon_init(size_t device, const char * runtime_lib
             /* .device    = */ ggml_backend_reg_dev_get(ggml_backend_hexagon_reg(), device),
             /* .context   = */ &g_hexagon_mgr[device]
     };
-
+    GGMLHEXAGON_LOG_DEBUG("DDDDD");
     g_hexagon_mgr[device].backend = hexagon_backend;
     if (HWACCEL_CDSP == g_hexagon_appcfg.hwaccel_approach) {
         int result = ggmlhexagon_init_dsp(&g_hexagon_mgr[device]);
@@ -6151,7 +6151,7 @@ ggml_backend_t ggml_backend_hexagon_init(size_t device, const char * runtime_lib
         GGMLHEXAGON_LOG_INFO("device name %s", ggml_backend_hexagon_device_get_description(hexagon_backend->device));
     }
     GGMLHEXAGON_LOG_DEBUG("leave %s", __func__);
-
+    GGMLHEXAGON_LOG_DEBUG("EEEEE");
     return hexagon_backend;
 }
 
