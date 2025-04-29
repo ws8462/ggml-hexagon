@@ -22,6 +22,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 #ifdef __APPLE__
 #include <sys/types.h>
@@ -30,6 +31,7 @@
 
 
 // backend buffer type
+using namespace std;
 
 const char * ggml_backend_buft_name(ggml_backend_buffer_type_t buft) {
     return buft->iface.get_name(buft);
@@ -879,13 +881,16 @@ static void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct gg
         GGML_ABORT("%s: failed to initialize context\n", __func__);
     }
 
+    cout<<"Check Graph"<<endl;
+    ggml_backend_sched_print_assignments(sched, graph);
+
     // pass 1: assign backends to ops with pre-allocated inputs
     for (int i = 0; i < graph->n_leafs; i++) {
         struct ggml_tensor * leaf = graph->leafs[i];
         int * leaf_backend_id = &tensor_backend_id(leaf);
         // do not overwrite user assignments
         if (*leaf_backend_id == -1) {
-            *leaf_backend_id = ggml_backend_sched_backend_id_from_cur(sched, leaf);
+            *leaf_backend_id = ggml_backend_sched_backend_id_from_cur(sched, leaf);        
         }
     }
 
