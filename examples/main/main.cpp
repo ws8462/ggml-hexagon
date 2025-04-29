@@ -14,6 +14,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <iostream>
 
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
 #include <signal.h>
@@ -30,6 +31,7 @@
 #if defined(_MSC_VER)
 #pragma warning(disable: 4244 4267) // possible loss of data
 #endif
+using namespace std;
 
 static llama_context           ** g_ctx;
 static llama_model             ** g_model;
@@ -86,19 +88,20 @@ static void sigint_handler(int signo) {
 int main(int argc, char ** argv) {
     common_params params;
     g_params = &params;
+    cout<<"AAAAA"<<endl;
     if (!common_params_parse(argc, argv, params, LLAMA_EXAMPLE_MAIN, print_usage)) {
         return 1;
     }
-
+    cout<<"B"<<endl;
     common_init();
-
+    cout<<"C"<<endl;
     auto & sparams = params.sampling;
-
+    cout<<"D"<<endl;
     // save choice to use color for later
     // (note for later: this is a slightly awkward choice)
     console::init(params.simple_io, params.use_color);
     atexit([]() { console::cleanup(); });
-
+    cout<<"E"<<endl;
     if (params.logits_all) {
         LOG_ERR("************\n");
         LOG_ERR("%s: please use the 'perplexity' tool for perplexity calculations\n", __func__);
@@ -106,7 +109,7 @@ int main(int argc, char ** argv) {
 
         return 0;
     }
-
+    cout<<"F"<<endl;
     if (params.embedding) {
         LOG_ERR("************\n");
         LOG_ERR("%s: please use the 'embedding' tool for embedding calculations\n", __func__);
@@ -127,7 +130,7 @@ int main(int argc, char ** argv) {
     if (params.rope_freq_scale != 0.0) {
         LOG_WRN("%s: warning: scaling RoPE frequency by %g.\n", __func__, params.rope_freq_scale);
     }
-
+    cout<<"G"<<endl;
     LOG_INF("%s: llama backend init\n", __func__);
 
     llama_backend_init();
