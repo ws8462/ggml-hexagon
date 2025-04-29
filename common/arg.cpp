@@ -25,6 +25,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <iostream>
 
 //#define LLAMA_USE_CURL
 
@@ -37,6 +38,7 @@
 #include "json-schema-to-grammar.h"
 
 using json = nlohmann::ordered_json;
+using namespace std;
 
 common_arg & common_arg::set_examples(std::initializer_list<enum llama_example> examples) {
     this->examples = std::move(examples);
@@ -1054,9 +1056,10 @@ static void add_rpc_devices(std::string servers) {
 }
 
 bool common_params_parse(int argc, char ** argv, common_params & params, llama_example ex, void(*print_usage)(int, char **)) {
+    cout<<"A-1"<<endl;
     auto ctx_arg = common_params_parser_init(params, ex, print_usage);
     const common_params params_org = ctx_arg.params; // the example can modify the default params
-
+    cout<<"A-2"<<endl;
     try {
         if (!common_params_parse_ex(argc, argv, ctx_arg)) {
             ctx_arg.params = params_org;
@@ -1078,7 +1081,7 @@ bool common_params_parse(int argc, char ** argv, common_params & params, llama_e
         ctx_arg.params = params_org;
         return false;
     }
-
+    cout<<"A-3"<<endl;
     return true;
 }
 

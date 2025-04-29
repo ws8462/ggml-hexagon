@@ -192,7 +192,7 @@ struct ggml_backend_registry {
         register_backend(ggml_backend_kompute_reg());
 #endif
 #ifdef GGML_USE_HEXAGON
-        register_backend(ggml_backend_hexagon_reg());
+        register_backend(ggml_backend_hexagon_reg()); //hexagon_add
 #endif
 #ifdef GGML_USE_CPU
         register_backend(ggml_backend_cpu_reg());
@@ -584,7 +584,7 @@ void ggml_backend_load_all_from_path(const char * dir_path) {
     ggml_backend_load_best("vulkan", silent, dir_path);
     ggml_backend_load_best("opencl", silent, dir_path);
     ggml_backend_load_best("musa", silent, dir_path);
-    ggml_backend_load_best("hexagon", silent, dir_path);
+    ggml_backend_load_best("hexagon", silent, dir_path); //hexagon_add
     ggml_backend_load_best("cpu", silent, dir_path);
     // check the environment variable GGML_BACKEND_PATH to load an out-of-tree backend
     const char * backend_path = std::getenv("GGML_BACKEND_PATH");
