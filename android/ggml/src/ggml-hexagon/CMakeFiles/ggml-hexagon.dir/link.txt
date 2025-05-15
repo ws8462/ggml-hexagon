@@ -1,0 +1,2 @@
+/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar qc libggml-hexagon.a CMakeFiles/ggml-hexagon.dir/ggml-hexagon.cpp.o CMakeFiles/ggml-hexagon.dir/kernels/ggmlop_ap_skel.c.o
+/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib libggml-hexagon.a

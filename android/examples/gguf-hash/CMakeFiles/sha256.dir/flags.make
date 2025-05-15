@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/home/kws/ggml-hexagon/examples -I/home/kws/ggml-hexagon/examples/gguf-hash/deps
 
-C_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O3 -DNDEBUG  -fPIC   -march=armv8.7-a -mcpu=cortex-x1 -mtune=cortex-x1 -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion
+C_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -march=armv8.4a+dotprod -O3 -DNDEBUG  -fPIC   -march=armv8.7-a -mcpu=cortex-x1 -mtune=cortex-x1 -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion
 

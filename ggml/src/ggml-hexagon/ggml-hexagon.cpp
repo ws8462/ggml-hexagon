@@ -877,6 +877,7 @@ static void ggmlhexagon_print_running_timestamp(ggml_backend_hexagon_context * c
         GGMLHEXAGON_LOG_INFO("using rpc ion memory pool:        %s", g_hexagon_appcfg.enable_rpc_ion_mempool ? "YES" : "NO");
         GGMLHEXAGON_LOG_INFO("using rpc dma memory pool:        %s", g_hexagon_appcfg.enable_rpc_dma_mempool ? "YES" : "NO");
         ggmlhexagon_probe_dspinfo(ctx);
+        
     } else {
         GGMLHEXAGON_LOG_INFO("offload quantize GGML_OP_MUL_MAT: %s", g_hexagon_appcfg.enable_q_mulmat ? "YES" : "NO");
     }
