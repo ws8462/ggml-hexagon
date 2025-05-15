@@ -730,13 +730,18 @@ static char causes[GGML_DEFAULT_GRAPH_SIZE*16 + GGML_SCHED_MAX_SPLITS_DEBUG*GGML
 static int ggml_backend_sched_backend_id_from_cur(ggml_backend_sched_t sched, struct ggml_tensor * tensor) {
     // assign pre-allocated nodes to their backend
 
-    printf("=========== ggml backend pool ===========\n");
-    printf("total backends = %d\n", sched->n_backends);
-    for (int i = 0; i < sched->n_backends; i++) {
-        const char * name = ggml_backend_name(sched->backends[i]);
-        printf("backend[%d] = %s\n", i, name ? name : "CPU (default)");
+    static bool flag = false;
+
+    if(!flag) {
+        flag = true;
+        printf("=========== ggml backend pool ===========\n");
+        printf("total backends = %d\n", sched->n_backends);
+        for (int i = 0; i < sched->n_backends; i++) {
+            const char * name = ggml_backend_name(sched->backends[i]);
+            printf("backend[%d] = %s\n", i, name ? name : "CPU (default)");
+        }
+        printf("=========================================\n");
     }
-    printf("=========================================\n");
     
     // const int NPU_BACKEND_ID = 0;
     // if (tensor->op == GGML_OP_MUL_MAT) {
@@ -816,12 +821,14 @@ static void ggml_backend_sched_print_assignments(ggml_backend_sched_t sched, str
             ggml_backend_t split_backend = sched->backends[sched->splits[cur_split].backend_id];
             GGML_LOG_DEBUG("\n## SPLIT #%d: %s # %d inputs", cur_split, ggml_backend_name(split_backend),
                 sched->splits[cur_split].n_inputs);
+            cout<<"a : "<<cur_split<<" "<<ggml_backend_name(split_backend)<<" "<<sched->splits[cur_split].n_inputs<<endl;
             for (int j = 0; j < sched->splits[cur_split].n_inputs; j++) {
                 if (j == 0) {
                     GGML_LOG_DEBUG(": ");
                 }
                 GGML_LOG_DEBUG("[%s (%5.5s)] ", sched->splits[cur_split].inputs[j]->name,
                     fmt_size(ggml_nbytes(sched->splits[cur_split].inputs[j])));
+                cout<<"b : "<<sched->splits[cur_split].inputs[j]->name<<" "<<fmt_size(ggml_nbytes(sched->splits[cur_split].inputs[j]))<<endl;
             }
             GGML_LOG_DEBUG("\n");
             cur_split++;
@@ -830,10 +837,12 @@ static void ggml_backend_sched_print_assignments(ggml_backend_sched_t sched, str
         if (ggml_is_view_op(node->op)) {
             continue;
         }
-        if (sched->debug > 1) {
+        cout<<"-------------------------------"<<endl;
+        if (1) { // sched->debug > 1
             ggml_backend_t tensor_backend = ggml_backend_sched_get_tensor_backend(sched, node);
             GGML_LOG_DEBUG("node #%3d (%10.10s): %20.20s (%5.5s) [%5.5s %8.8s]:", i, ggml_op_name(node->op), node->name,
                 fmt_size(ggml_nbytes(node)), tensor_backend ? ggml_backend_name(tensor_backend) : "NULL", GET_CAUSE(node));
+            cout<<"c : "<<i<<" "<<ggml_op_name(node->op)<<" "<<node->name<<" "<<fmt_size(ggml_nbytes(node))<<" "<<ggml_backend_name(tensor_backend)<<endl;
             for (int j = 0; j < GGML_MAX_SRC; j++) {
                 struct ggml_tensor * src = node->src[j];
                 if (src == NULL) {
@@ -842,6 +851,7 @@ static void ggml_backend_sched_print_assignments(ggml_backend_sched_t sched, str
                 ggml_backend_t src_backend = ggml_backend_sched_get_tensor_backend(sched, src);
                 GGML_LOG_DEBUG(" %20.20s (%5.5s) [%5.5s %8.8s]", src->name,
                     fmt_size(ggml_nbytes(src)), src_backend ? ggml_backend_name(src_backend) : "NULL", GET_CAUSE(src));
+                    cout<<"d : "<<src->name<<" "<<fmt_size(ggml_nbytes(node))<<" "<<ggml_backend_name(src_backend)<<endl;
             }
             GGML_LOG_DEBUG("\n");
         }
@@ -895,9 +905,6 @@ static void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct gg
     if (sched->ctx == NULL) {
         GGML_ABORT("%s: failed to initialize context\n", __func__);
     }
-
-    cout<<"Check Graph"<<endl;
-    ggml_backend_sched_print_assignments(sched, graph);
 
     // pass 1: assign backends to ops with pre-allocated inputs
     for (int i = 0; i < graph->n_leafs; i++) {
@@ -1238,6 +1245,8 @@ static void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct gg
         split->i_end = graph->n_nodes;
         sched->n_splits = i_split + 1;
     }
+
+    ggml_backend_sched_print_assignments(sched, graph);
 
     if (sched->debug) {
         ggml_backend_sched_print_assignments(sched, graph);
