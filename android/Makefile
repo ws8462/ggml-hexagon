@@ -575,17 +575,17 @@ ggml-cpu/fast:
 .PHONY : ggml-cpu/fast
 
 #=============================================================================
-# Target rules for targets named ggml-hexagon
+# Target rules for targets named ggml-opencl
 
 # Build rule for target.
-ggml-hexagon: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml-hexagon
-.PHONY : ggml-hexagon
+ggml-opencl: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml-opencl
+.PHONY : ggml-opencl
 
 # fast build rule for target.
-ggml-hexagon/fast:
-	$(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build
-.PHONY : ggml-hexagon/fast
+ggml-opencl/fast:
+	$(MAKE) $(MAKESILENT) -f ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/build.make ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/build
+.PHONY : ggml-opencl/fast
 
 #=============================================================================
 # Target rules for targets named llama
@@ -1446,19 +1446,6 @@ llava_static/fast:
 .PHONY : llava_static/fast
 
 #=============================================================================
-# Target rules for targets named llava_shared
-
-# Build rule for target.
-llava_shared: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 llava_shared
-.PHONY : llava_shared
-
-# fast build rule for target.
-llava_shared/fast:
-	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llava_shared.dir/build.make examples/llava/CMakeFiles/llava_shared.dir/build
-.PHONY : llava_shared/fast
-
-#=============================================================================
 # Target rules for targets named llama-llava-cli
 
 # Build rule for target.
@@ -1595,7 +1582,7 @@ help:
 	@echo "... ggml"
 	@echo "... ggml-base"
 	@echo "... ggml-cpu"
-	@echo "... ggml-hexagon"
+	@echo "... ggml-opencl"
 	@echo "... llama"
 	@echo "... llama-batched"
 	@echo "... llama-batched-bench"
@@ -1642,7 +1629,6 @@ help:
 	@echo "... llama-tts"
 	@echo "... llama-vdot"
 	@echo "... llava"
-	@echo "... llava_shared"
 	@echo "... llava_static"
 	@echo "... sha1"
 	@echo "... sha256"

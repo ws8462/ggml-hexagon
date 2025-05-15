@@ -1,0 +1,2 @@
+/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar qc libggml-opencl.a CMakeFiles/ggml-opencl.dir/ggml-opencl.cpp.o
+/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib libggml-opencl.a

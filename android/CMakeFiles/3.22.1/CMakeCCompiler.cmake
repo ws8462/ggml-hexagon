@@ -1,7 +1,7 @@
-set(CMAKE_C_COMPILER "/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/clang")
+set(CMAKE_C_COMPILER "/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/clang")
 set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_C_COMPILER_ID "Clang")
-set(CMAKE_C_COMPILER_VERSION "19.0.0")
+set(CMAKE_C_COMPILER_VERSION "17.0.2")
 set(CMAKE_C_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_C_COMPILER_WRAPPER "")
 set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "17")
@@ -21,11 +21,11 @@ set(CMAKE_C_SIMULATE_VERSION "")
 
 
 
-set(CMAKE_AR "/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar")
-set(CMAKE_C_COMPILER_AR "/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar")
-set(CMAKE_RANLIB "/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib")
-set(CMAKE_C_COMPILER_RANLIB "/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib")
-set(CMAKE_LINKER "/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld")
+set(CMAKE_AR "/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar")
+set(CMAKE_C_COMPILER_AR "/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar")
+set(CMAKE_RANLIB "/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib")
+set(CMAKE_C_COMPILER_RANLIB "/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib")
+set(CMAKE_LINKER "/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld")
 set(CMAKE_MT "")
 set(CMAKE_COMPILER_IS_GNUCC )
 set(CMAKE_C_COMPILER_LOADED 1)
@@ -66,7 +66,7 @@ endif()
 
 
 
-set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/include;/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android;/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include")
+set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include;/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android;/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include")
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "-l:libunwind.a;dl;c;-l:libunwind.a;dl")
-set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/lib/linux/aarch64;/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/23;/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android;/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib")
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64;/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/28;/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android;/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib")
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

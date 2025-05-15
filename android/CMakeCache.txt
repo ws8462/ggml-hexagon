@@ -18,19 +18,19 @@
 ANDROID_ABI:UNINITIALIZED=arm64-v8a
 
 //No help, variable specified on the command line.
-ANDROID_PLATFORM:UNINITIALIZED=android-23
+ANDROID_PLATFORM:UNINITIALIZED=android-28
 
 //ggml: build shared libraries
-BUILD_SHARED_LIBS:BOOL=ON
+BUILD_SHARED_LIBS:BOOL=OFF
 
 //Build the testing tree.
 BUILD_TESTING:BOOL=ON
 
 //Path to a program.
-CMAKE_ADDR2LINE:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-addr2line
+CMAKE_ADDR2LINE:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-addr2line
 
 //Archiver
-CMAKE_AR:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
+CMAKE_AR:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
 
 //Flags used by the compiler during all build types.
 CMAKE_ASM_FLAGS:STRING=
@@ -41,18 +41,17 @@ CMAKE_ASM_FLAGS_DEBUG:STRING=
 //Flags used by the compiler during release builds.
 CMAKE_ASM_FLAGS_RELEASE:STRING=
 
-//Choose the type of build, options are: None Debug Release RelWithDebInfo
-// MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=Debug
+//Build type
+CMAKE_BUILD_TYPE:STRING=Release
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
 //LLVM archiver
-CMAKE_CXX_COMPILER_AR:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
+CMAKE_CXX_COMPILER_AR:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
 
 //Generate index for LLVM archive
-CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib
+CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib
 
 //Flags used by the compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -73,13 +72,13 @@ CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 CMAKE_CXX_STANDARD_LIBRARIES:STRING=-latomic -lm
 
 //LLVM archiver
-CMAKE_C_COMPILER_AR:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
+CMAKE_C_COMPILER_AR:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
 
 //Generate index for LLVM archive
-CMAKE_C_COMPILER_RANLIB:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib
+CMAKE_C_COMPILER_RANLIB:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib
 
 //Flags used by the compiler during all build types.
-CMAKE_C_FLAGS:STRING=-march=armv8.4a+dotprod
+CMAKE_C_FLAGS:STRING=
 
 //Flags used by the compiler during debug builds.
 CMAKE_C_FLAGS_DEBUG:STRING=
@@ -97,7 +96,7 @@ CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 CMAKE_C_STANDARD_LIBRARIES:STRING=-latomic -lm
 
 //Path to a program.
-CMAKE_DLLTOOL:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-dlltool
+CMAKE_DLLTOOL:FILEPATH=CMAKE_DLLTOOL-NOTFOUND
 
 //Flags used by the linker.
 CMAKE_EXE_LINKER_FLAGS:STRING=
@@ -169,7 +168,7 @@ CMAKE_INSTALL_SHAREDSTATEDIR:PATH=com
 CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 
 //Path to a program.
-CMAKE_LINKER:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld
+CMAKE_LINKER:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld
 
 //Path to a program.
 CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/gmake
@@ -194,13 +193,13 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_NM:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-nm
+CMAKE_NM:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-nm
 
 //Path to a program.
-CMAKE_OBJCOPY:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objcopy
+CMAKE_OBJCOPY:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objcopy
 
 //Path to a program.
-CMAKE_OBJDUMP:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objdump
+CMAKE_OBJDUMP:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objdump
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -212,10 +211,10 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_NAME:STATIC=llama.cpp
 
 //Ranlib
-CMAKE_RANLIB:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib
+CMAKE_RANLIB:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib
 
 //Path to a program.
-CMAKE_READELF:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf
+CMAKE_READELF:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf
 
 //Flags used by the linker during the creation of dll's.
 CMAKE_SHARED_LINKER_FLAGS:STRING=
@@ -264,10 +263,10 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Strip
-CMAKE_STRIP:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip
+CMAKE_STRIP:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip
 
 //The CMake toolchain file
-CMAKE_TOOLCHAIN_FILE:FILEPATH=/home/kws/android-ndk-r28/build/cmake/android.toolchain.cmake
+CMAKE_TOOLCHAIN_FILE:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/build/cmake/android.toolchain.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -418,7 +417,7 @@ GGML_FMA:BOOL=OFF
 GGML_GPROF:BOOL=OFF
 
 //ggml: use HEXAGON
-GGML_HEXAGON:BOOL=ON
+GGML_HEXAGON:BOOL=OFF
 
 //ggml: use HIP
 GGML_HIP:BOOL=OFF
@@ -484,7 +483,7 @@ GGML_MUSA:BOOL=OFF
 GGML_NATIVE:BOOL=OFF
 
 //ggml: use OpenCL
-GGML_OPENCL:BOOL=OFF
+GGML_OPENCL:BOOL=ON
 
 //ggml: embed kernels
 GGML_OPENCL_EMBED_KERNELS:BOOL=ON
@@ -582,9 +581,6 @@ GIT_EXE:FILEPATH=/usr/bin/git
 //Git command line client
 GIT_EXECUTABLE:FILEPATH=/usr/bin/git
 
-//No help, variable specified on the command line.
-HEXAGON_SDK_PATH:UNINITIALIZED=/home/kws/6.2.0.1
-
 //llama: enable all compiler warnings
 LLAMA_ALL_WARNINGS:BOOL=ON
 
@@ -637,20 +633,23 @@ LLAMA_SERVER_SSL:BOOL=OFF
 //Use system libggml
 LLAMA_USE_SYSTEM_GGML:BOOL=OFF
 
-//Path to a library.
-LOG_LIB:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/23/liblog.so
-
 //Command to build the project
 MAKECOMMAND:STRING=/usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 
 //Path to a library.
-MATH_LIBRARY:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/23/libm.so
+MATH_LIBRARY:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/28/libm.so
 
 //Path to the memory checking command, used for memory error detection.
 MEMORYCHECK_COMMAND:FILEPATH=MEMORYCHECK_COMMAND-NOTFOUND
 
 //File that contains suppressions for the memory checker
 MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
+
+//Path to a file.
+OpenCL_INCLUDE_DIR:PATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
+
+//Path to a library.
+OpenCL_LIBRARY:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/libOpenCL.so
 
 //CXX compiler flags for OpenMP parallelization
 OpenMP_CXX_FLAGS:STRING=-fopenmp=libomp
@@ -665,25 +664,10 @@ OpenMP_C_FLAGS:STRING=-fopenmp=libomp
 OpenMP_C_LIB_NAMES:STRING=omp
 
 //Path to the omp library for OpenMP
-OpenMP_omp_LIBRARY:FILEPATH=/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/lib/linux/aarch64/libomp.so
-
-//customized library search path for QNN backend
-QNN_DEFAULT_LIB_SEARCH_PATH:STRING=/data/local/tmp/
-
-//No help, variable specified on the command line.
-QNN_SDK_PATH:UNINITIALIZED=/home/kws/qairt/2.31.0.250130
+OpenMP_omp_LIBRARY:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64/libomp.so
 
 //Name of the computer/site where compile is being run
 SITE:STRING=CASL6
-
-//Value Computed by CMake
-ggml-hexagon_BINARY_DIR:STATIC=/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon
-
-//Value Computed by CMake
-ggml-hexagon_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-ggml-hexagon_SOURCE_DIR:STATIC=/home/kws/ggml-hexagon/ggml/src/ggml-hexagon
 
 //Value Computed by CMake
 ggml_BINARY_DIR:STATIC=/home/kws/ggml-hexagon/android/ggml
@@ -712,6 +696,8 @@ llama.cpp_SOURCE_DIR:STATIC=/home/kws/ggml-hexagon
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
+//STRINGS property for variable: CMAKE_BUILD_TYPE
+CMAKE_BUILD_TYPE-STRINGS:INTERNAL=Debug;Release;MinSizeRel;RelWithDebInfo
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/home/kws/ggml-hexagon/android
 //Major version of cmake used to create the current loaded cache
@@ -901,16 +887,20 @@ CTEST_SUBMIT_RETRY_DELAY-ADVANCED:INTERNAL=1
 DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
 //Details about finding Git
 FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[/usr/bin/git][v2.34.1()]
+//Details about finding OpenCL
+FIND_PACKAGE_MESSAGE_DETAILS_OpenCL:INTERNAL=[/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/libOpenCL.so][/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include][v2.2()]
 //Details about finding OpenMP
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[TRUE][TRUE][c ][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[TRUE][TRUE][c ][v5.0()]
 //Details about finding OpenMP_C
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C:INTERNAL=[-fopenmp=libomp][/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/lib/linux/aarch64/libomp.so][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C:INTERNAL=[-fopenmp=libomp][/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64/libomp.so][v5.0()]
 //Details about finding OpenMP_CXX
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX:INTERNAL=[-fopenmp=libomp][/home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/lib/linux/aarch64/libomp.so][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX:INTERNAL=[-fopenmp=libomp][/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64/libomp.so][v5.0()]
+//Details about finding Python3
+FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/usr/bin/python3.10][cfound components: Interpreter ][v3.10.12()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //List of backends for cmake package
-GGML_AVAILABLE_BACKENDS:INTERNAL=ggml-cpu;ggml-hexagon
+GGML_AVAILABLE_BACKENDS:INTERNAL=ggml-cpu;ggml-opencl
 //Test GGML_COMPILER_SUPPORTS_FP16_FORMAT_I3E
 GGML_COMPILER_SUPPORTS_FP16_FORMAT_I3E:INTERNAL=
 //STRINGS property for variable: GGML_CUDA_COMPRESSION_MODE
@@ -925,6 +915,12 @@ MAKECOMMAND-ADVANCED:INTERNAL=1
 MEMORYCHECK_COMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MEMORYCHECK_SUPPRESSIONS_FILE
 MEMORYCHECK_SUPPRESSIONS_FILE-ADVANCED:INTERNAL=1
+//Have symbol CL_VERSION_2_2
+OPENCL_VERSION_2_2:INTERNAL=1
+//ADVANCED property for variable: OpenCL_INCLUDE_DIR
+OpenCL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCL_LIBRARY
+OpenCL_LIBRARY-ADVANCED:INTERNAL=1
 //Result of TRY_COMPILE
 OpenMP_COMPILE_RESULT_CXX_fopenmplibomp:INTERNAL=TRUE
 //Result of TRY_COMPILE
@@ -934,13 +930,13 @@ OpenMP_CXX_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenMP_CXX_LIB_NAMES
 OpenMP_CXX_LIB_NAMES-ADVANCED:INTERNAL=1
 //CXX compiler's OpenMP specification date
-OpenMP_CXX_SPEC_DATE:INTERNAL=202011
+OpenMP_CXX_SPEC_DATE:INTERNAL=201811
 //ADVANCED property for variable: OpenMP_C_FLAGS
 OpenMP_C_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenMP_C_LIB_NAMES
 OpenMP_C_LIB_NAMES-ADVANCED:INTERNAL=1
 //C compiler's OpenMP specification date
-OpenMP_C_SPEC_DATE:INTERNAL=202011
+OpenMP_C_SPEC_DATE:INTERNAL=201811
 //Result of TRY_COMPILE
 OpenMP_SPECTEST_CXX_:INTERNAL=TRUE
 //Result of TRY_COMPILE
@@ -953,4 +949,9 @@ SITE-ADVANCED:INTERNAL=1
 THREADS_HAVE_PTHREAD_ARG:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+//Path to a program.
+_Python3_EXECUTABLE:INTERNAL=/usr/bin/python3.10
+//Python3 Properties
+_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;10;12;64;;;/usr/lib/python3.10;/usr/lib/python3.10;/usr/lib/python3/dist-packages;/usr/lib/python3/dist-packages
+_Python3_INTERPRETER_SIGNATURE:INTERNAL=b91b4035ecb3bb3f5760d35922531bcd
 

@@ -13,9 +13,9 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/kws/ggml-hexagon/android/ggml/src/CMakeFiles/ggml-cpu.dir/DependInfo.cmake"
-  "/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/DependInfo.cmake"
   "/home/kws/ggml-hexagon/android/ggml/src/CMakeFiles/ggml-base.dir/DependInfo.cmake"
+  "/home/kws/ggml-hexagon/android/ggml/src/CMakeFiles/ggml-cpu.dir/DependInfo.cmake"
+  "/home/kws/ggml-hexagon/android/ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

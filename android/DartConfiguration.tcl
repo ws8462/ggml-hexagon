@@ -62,8 +62,8 @@ UpdateOptions:
 UpdateType: git
 
 # Compiler info
-Compiler: /home/kws/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++
-CompilerVersion: 19.0.0
+Compiler: /home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++
+CompilerVersion: 17.0.2
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 

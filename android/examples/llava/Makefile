@@ -200,20 +200,6 @@ llava_static/fast:
 .PHONY : llava_static/fast
 
 # Convenience name for target.
-examples/llava/CMakeFiles/llava_shared.dir/rule:
-	cd /home/kws/ggml-hexagon/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llava/CMakeFiles/llava_shared.dir/rule
-.PHONY : examples/llava/CMakeFiles/llava_shared.dir/rule
-
-# Convenience name for target.
-llava_shared: examples/llava/CMakeFiles/llava_shared.dir/rule
-.PHONY : llava_shared
-
-# fast build rule for target.
-llava_shared/fast:
-	cd /home/kws/ggml-hexagon/android && $(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llava_shared.dir/build.make examples/llava/CMakeFiles/llava_shared.dir/build
-.PHONY : llava_shared/fast
-
-# Convenience name for target.
 examples/llava/CMakeFiles/llama-llava-cli.dir/rule:
 	cd /home/kws/ggml-hexagon/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llava/CMakeFiles/llama-llava-cli.dir/rule
 .PHONY : examples/llava/CMakeFiles/llama-llava-cli.dir/rule
@@ -470,7 +456,6 @@ help:
 	@echo "... llama-minicpmv-cli"
 	@echo "... llama-qwen2vl-cli"
 	@echo "... llava"
-	@echo "... llava_shared"
 	@echo "... llava_static"
 	@echo "... clip-quantize-cli.o"
 	@echo "... clip-quantize-cli.i"
