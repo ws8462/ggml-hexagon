@@ -743,11 +743,19 @@ static int ggml_backend_sched_backend_id_from_cur(ggml_backend_sched_t sched, st
         printf("=========================================\n");
     }
     
-    // const int NPU_BACKEND_ID = 0;
-    // if (tensor->op == GGML_OP_MUL_MAT) {
-    //     printf("[CUSTOM] %s → Hexagon NPU backend\n", tensor->name);
-    //     return NPU_BACKEND_ID;
-    // }
+    const int NPU_BACKEND_ID = 0;
+    const int GPU_BACKEND_ID = 1;
+    const int CPU_BACKEND_ID = 2;
+    
+    if (tensor->op == GGML_OP_MUL_MAT) {
+        printf("[CUSTOM] %s → NPU backend\n", tensor->name);
+        return NPU_BACKEND_ID;
+    }
+    else if (tensor->op == GGML_OP_ADD)
+    {
+        printf("[CUSTOM] %s → GPU backend\n", tensor->name);
+        return GPU_BACKEND_ID;
+    }
 
     int cur_backend_id = ggml_backend_sched_backend_from_buffer(sched, tensor, tensor);
     if (cur_backend_id != -1) {

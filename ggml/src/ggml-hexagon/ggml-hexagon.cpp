@@ -5235,8 +5235,9 @@ static bool ggmlhexagon_can_handle_op_through_qnn(ggml_backend_dev_t dev, const 
 static bool ggmlhexagon_compute_forward(ggml_backend_t backend, struct ggml_tensor * dst) {
     ggmlqnn_op_func_t func          = nullptr;
     ggml_backend_hexagon_context * ctx  = (ggml_backend_hexagon_context *)backend->context;
-
+    std::cout<<"NPU Enter"<<std::endl;
     if (HWACCEL_CDSP == g_hexagon_appcfg.hwaccel_approach) {
+        std::cout<<"CDSP Enter"<<std::endl;
         ggmlhexagon_compute(ctx, dst);
         return true;
     }
