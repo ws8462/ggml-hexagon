@@ -747,11 +747,10 @@ static int ggml_backend_sched_backend_id_from_cur(ggml_backend_sched_t sched, st
     const int NPU_BACKEND_ID = 1;
     const int CPU_BACKEND_ID = 2;
     
-    // if (tensor->op == GGML_OP_MUL_MAT) {
-    //     printf("[CUSTOM] %s → NPU backend\n", tensor->name);
-    //     return NPU_BACKEND_ID;
-    // }
-    //return NPU_BACKEND_ID;
+    if (tensor->op == GGML_OP_MUL_MAT) {
+        printf("[CUSTOM] %s → NPU backend\n", tensor->name);
+        return GPU_BACKEND_ID;
+    }
     // else if (tensor->op == GGML_OP_ADD)
     // {
     //     printf("[CUSTOM] %s → GPU backend\n", tensor->name);
