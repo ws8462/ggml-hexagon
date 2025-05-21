@@ -824,11 +824,13 @@ ggml/src/all: ggml/src/CMakeFiles/ggml.dir/all
 ggml/src/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 ggml/src/all: ggml/src/ggml-cpu/all
 ggml/src/all: ggml/src/ggml-opencl/all
+ggml/src/all: ggml/src/ggml-hexagon/all
 .PHONY : ggml/src/all
 
 # Recursive "preinstall" directory target.
 ggml/src/preinstall: ggml/src/ggml-cpu/preinstall
 ggml/src/preinstall: ggml/src/ggml-opencl/preinstall
+ggml/src/preinstall: ggml/src/ggml-hexagon/preinstall
 .PHONY : ggml/src/preinstall
 
 # Recursive "clean" directory target.
@@ -837,6 +839,7 @@ ggml/src/clean: ggml/src/CMakeFiles/ggml.dir/clean
 ggml/src/clean: ggml/src/CMakeFiles/ggml-cpu.dir/clean
 ggml/src/clean: ggml/src/ggml-cpu/clean
 ggml/src/clean: ggml/src/ggml-opencl/clean
+ggml/src/clean: ggml/src/ggml-hexagon/clean
 .PHONY : ggml/src/clean
 
 #=============================================================================
@@ -853,6 +856,21 @@ ggml/src/ggml-cpu/preinstall:
 # Recursive "clean" directory target.
 ggml/src/ggml-cpu/clean:
 .PHONY : ggml/src/ggml-cpu/clean
+
+#=============================================================================
+# Directory level rules for directory ggml/src/ggml-hexagon
+
+# Recursive "all" directory target.
+ggml/src/ggml-hexagon/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
+.PHONY : ggml/src/ggml-hexagon/all
+
+# Recursive "preinstall" directory target.
+ggml/src/ggml-hexagon/preinstall:
+.PHONY : ggml/src/ggml-hexagon/preinstall
+
+# Recursive "clean" directory target.
+ggml/src/ggml-hexagon/clean: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/clean
+.PHONY : ggml/src/ggml-hexagon/clean
 
 #=============================================================================
 # Directory level rules for directory ggml/src/ggml-opencl
@@ -1732,6 +1750,7 @@ ggml/src/CMakeFiles/ggml-base.dir/clean:
 ggml/src/CMakeFiles/ggml.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 ggml/src/CMakeFiles/ggml.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 ggml/src/CMakeFiles/ggml.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+ggml/src/CMakeFiles/ggml.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 	$(MAKE) $(MAKESILENT) -f ggml/src/CMakeFiles/ggml.dir/build.make ggml/src/CMakeFiles/ggml.dir/depend
 	$(MAKE) $(MAKESILENT) -f ggml/src/CMakeFiles/ggml.dir/build.make ggml/src/CMakeFiles/ggml.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=6 "Built target ggml"
@@ -1739,7 +1758,7 @@ ggml/src/CMakeFiles/ggml.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.di
 
 # Build rule for subdir invocation for target.
 ggml/src/CMakeFiles/ggml.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/CMakeFiles/ggml.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : ggml/src/CMakeFiles/ggml.dir/rule
@@ -1786,7 +1805,7 @@ ggml/src/CMakeFiles/ggml-cpu.dir/clean:
 ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 	$(MAKE) $(MAKESILENT) -f ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/build.make ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/depend
 	$(MAKE) $(MAKESILENT) -f ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/build.make ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=16,17,18,19,20 "Built target ggml-opencl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=17,18,19,20,21 "Built target ggml-opencl"
 .PHONY : ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1806,6 +1825,32 @@ ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/clean:
 .PHONY : ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/clean
 
 #=============================================================================
+# Target rules for target ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir
+
+# All Build rule for target.
+ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
+	$(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/depend
+	$(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=16 "Built target ggml-hexagon"
+.PHONY : ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
+
+# Build rule for subdir invocation for target.
+ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
+.PHONY : ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/rule
+
+# Convenience name for target.
+ggml-hexagon: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/rule
+.PHONY : ggml-hexagon
+
+# clean rule for target.
+ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/clean:
+	$(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/clean
+.PHONY : ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/clean
+
+#=============================================================================
 # Target rules for target src/CMakeFiles/llama.dir
 
 # All Build rule for target.
@@ -1813,14 +1858,15 @@ src/CMakeFiles/llama.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 src/CMakeFiles/llama.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 src/CMakeFiles/llama.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 src/CMakeFiles/llama.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+src/CMakeFiles/llama.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/llama.dir/build.make src/CMakeFiles/llama.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/llama.dir/build.make src/CMakeFiles/llama.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=21,22,23,24,25,26,27,28,29,30 "Built target llama"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30,31 "Built target llama"
 .PHONY : src/CMakeFiles/llama.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/llama.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 26
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/llama.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : src/CMakeFiles/llama.dir/rule
@@ -1868,6 +1914,7 @@ common/CMakeFiles/common.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 common/CMakeFiles/common.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 common/CMakeFiles/common.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 common/CMakeFiles/common.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+common/CMakeFiles/common.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 common/CMakeFiles/common.dir/all: src/CMakeFiles/llama.dir/all
 common/CMakeFiles/common.dir/all: common/CMakeFiles/build_info.dir/all
 	$(MAKE) $(MAKESILENT) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/depend
@@ -1877,7 +1924,7 @@ common/CMakeFiles/common.dir/all: common/CMakeFiles/build_info.dir/all
 
 # Build rule for subdir invocation for target.
 common/CMakeFiles/common.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 30
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 common/CMakeFiles/common.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : common/CMakeFiles/common.dir/rule
@@ -1899,6 +1946,7 @@ tests/CMakeFiles/test-tokenizer-0.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-tokenizer-0.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-tokenizer-0.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-tokenizer-0.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-tokenizer-0.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-tokenizer-0.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-tokenizer-0.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-tokenizer-0.dir/all: common/CMakeFiles/common.dir/all
@@ -1909,7 +1957,7 @@ tests/CMakeFiles/test-tokenizer-0.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-tokenizer-0.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-tokenizer-0.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-tokenizer-0.dir/rule
@@ -1931,6 +1979,7 @@ tests/CMakeFiles/test-sampling.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-sampling.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-sampling.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-sampling.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-sampling.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-sampling.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-sampling.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-sampling.dir/all: common/CMakeFiles/common.dir/all
@@ -1941,7 +1990,7 @@ tests/CMakeFiles/test-sampling.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-sampling.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-sampling.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-sampling.dir/rule
@@ -1963,12 +2012,13 @@ tests/CMakeFiles/test-grammar-parser.dir/all: ggml/src/CMakeFiles/ggml-base.dir/
 tests/CMakeFiles/test-grammar-parser.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-grammar-parser.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-grammar-parser.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-grammar-parser.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-grammar-parser.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-grammar-parser.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-grammar-parser.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-grammar-parser.dir/build.make tests/CMakeFiles/test-grammar-parser.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-grammar-parser.dir/build.make tests/CMakeFiles/test-grammar-parser.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=85,86 "Built target test-grammar-parser"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=86 "Built target test-grammar-parser"
 .PHONY : tests/CMakeFiles/test-grammar-parser.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1995,17 +2045,18 @@ tests/CMakeFiles/test-grammar-integration.dir/all: ggml/src/CMakeFiles/ggml-base
 tests/CMakeFiles/test-grammar-integration.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-grammar-integration.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-grammar-integration.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-grammar-integration.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-grammar-integration.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-grammar-integration.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-grammar-integration.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-grammar-integration.dir/build.make tests/CMakeFiles/test-grammar-integration.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-grammar-integration.dir/build.make tests/CMakeFiles/test-grammar-integration.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=84 "Built target test-grammar-integration"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=84,85 "Built target test-grammar-integration"
 .PHONY : tests/CMakeFiles/test-grammar-integration.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-grammar-integration.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-grammar-integration.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-grammar-integration.dir/rule
@@ -2027,17 +2078,18 @@ tests/CMakeFiles/test-llama-grammar.dir/all: ggml/src/CMakeFiles/ggml-base.dir/a
 tests/CMakeFiles/test-llama-grammar.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-llama-grammar.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-llama-grammar.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-llama-grammar.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-llama-grammar.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-llama-grammar.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-llama-grammar.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-llama-grammar.dir/build.make tests/CMakeFiles/test-llama-grammar.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-llama-grammar.dir/build.make tests/CMakeFiles/test-llama-grammar.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=88 "Built target test-llama-grammar"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=88,89 "Built target test-llama-grammar"
 .PHONY : tests/CMakeFiles/test-llama-grammar.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-llama-grammar.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-llama-grammar.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-llama-grammar.dir/rule
@@ -2059,17 +2111,18 @@ tests/CMakeFiles/test-chat.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-chat.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-chat.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-chat.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-chat.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-chat.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-chat.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-chat.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-chat.dir/build.make tests/CMakeFiles/test-chat.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-chat.dir/build.make tests/CMakeFiles/test-chat.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=80 "Built target test-chat"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=80,81 "Built target test-chat"
 .PHONY : tests/CMakeFiles/test-chat.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-chat.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-chat.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-chat.dir/rule
@@ -2091,6 +2144,7 @@ tests/CMakeFiles/test-json-schema-to-grammar.dir/all: ggml/src/CMakeFiles/ggml-b
 tests/CMakeFiles/test-json-schema-to-grammar.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-json-schema-to-grammar.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-json-schema-to-grammar.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-json-schema-to-grammar.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-json-schema-to-grammar.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-json-schema-to-grammar.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-json-schema-to-grammar.dir/all: common/CMakeFiles/common.dir/all
@@ -2101,7 +2155,7 @@ tests/CMakeFiles/test-json-schema-to-grammar.dir/all: common/CMakeFiles/common.d
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-json-schema-to-grammar.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-json-schema-to-grammar.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-json-schema-to-grammar.dir/rule
@@ -2123,6 +2177,7 @@ tests/CMakeFiles/test-tokenizer-1-bpe.dir/all: ggml/src/CMakeFiles/ggml-base.dir
 tests/CMakeFiles/test-tokenizer-1-bpe.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-tokenizer-1-bpe.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-tokenizer-1-bpe.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-tokenizer-1-bpe.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-tokenizer-1-bpe.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-tokenizer-1-bpe.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-tokenizer-1-bpe.dir/all: common/CMakeFiles/common.dir/all
@@ -2133,7 +2188,7 @@ tests/CMakeFiles/test-tokenizer-1-bpe.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-tokenizer-1-bpe.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-tokenizer-1-bpe.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-tokenizer-1-bpe.dir/rule
@@ -2155,6 +2210,7 @@ tests/CMakeFiles/test-tokenizer-1-spm.dir/all: ggml/src/CMakeFiles/ggml-base.dir
 tests/CMakeFiles/test-tokenizer-1-spm.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-tokenizer-1-spm.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-tokenizer-1-spm.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-tokenizer-1-spm.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-tokenizer-1-spm.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-tokenizer-1-spm.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-tokenizer-1-spm.dir/all: common/CMakeFiles/common.dir/all
@@ -2165,7 +2221,7 @@ tests/CMakeFiles/test-tokenizer-1-spm.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-tokenizer-1-spm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-tokenizer-1-spm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-tokenizer-1-spm.dir/rule
@@ -2187,12 +2243,13 @@ tests/CMakeFiles/test-log.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-log.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-log.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-log.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-log.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-log.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-log.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-log.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-log.dir/build.make tests/CMakeFiles/test-log.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-log.dir/build.make tests/CMakeFiles/test-log.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=89,90 "Built target test-log"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=90 "Built target test-log"
 .PHONY : tests/CMakeFiles/test-log.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2219,17 +2276,18 @@ tests/CMakeFiles/test-arg-parser.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-arg-parser.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-arg-parser.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-arg-parser.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-arg-parser.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-arg-parser.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-arg-parser.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-arg-parser.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-arg-parser.dir/build.make tests/CMakeFiles/test-arg-parser.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-arg-parser.dir/build.make tests/CMakeFiles/test-arg-parser.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=74 "Built target test-arg-parser"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=74,75 "Built target test-arg-parser"
 .PHONY : tests/CMakeFiles/test-arg-parser.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-arg-parser.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-arg-parser.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-arg-parser.dir/rule
@@ -2251,12 +2309,13 @@ tests/CMakeFiles/test-chat-template.dir/all: ggml/src/CMakeFiles/ggml-base.dir/a
 tests/CMakeFiles/test-chat-template.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-chat-template.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-chat-template.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-chat-template.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-chat-template.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-chat-template.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-chat-template.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-chat-template.dir/build.make tests/CMakeFiles/test-chat-template.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-chat-template.dir/build.make tests/CMakeFiles/test-chat-template.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=81,82 "Built target test-chat-template"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=82 "Built target test-chat-template"
 .PHONY : tests/CMakeFiles/test-chat-template.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2283,6 +2342,7 @@ tests/CMakeFiles/test-gguf.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-gguf.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-gguf.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-gguf.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-gguf.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-gguf.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-gguf.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-gguf.dir/all: common/CMakeFiles/common.dir/all
@@ -2293,7 +2353,7 @@ tests/CMakeFiles/test-gguf.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-gguf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-gguf.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-gguf.dir/rule
@@ -2315,6 +2375,7 @@ tests/CMakeFiles/test-backend-ops.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-backend-ops.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-backend-ops.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-backend-ops.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-backend-ops.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-backend-ops.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-backend-ops.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-backend-ops.dir/all: common/CMakeFiles/common.dir/all
@@ -2325,7 +2386,7 @@ tests/CMakeFiles/test-backend-ops.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-backend-ops.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-backend-ops.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-backend-ops.dir/rule
@@ -2347,6 +2408,7 @@ tests/CMakeFiles/test-model-load-cancel.dir/all: ggml/src/CMakeFiles/ggml-base.d
 tests/CMakeFiles/test-model-load-cancel.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-model-load-cancel.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-model-load-cancel.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-model-load-cancel.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-model-load-cancel.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-model-load-cancel.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-model-load-cancel.dir/all: common/CMakeFiles/common.dir/all
@@ -2357,7 +2419,7 @@ tests/CMakeFiles/test-model-load-cancel.dir/all: common/CMakeFiles/common.dir/al
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-model-load-cancel.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-model-load-cancel.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-model-load-cancel.dir/rule
@@ -2379,12 +2441,13 @@ tests/CMakeFiles/test-autorelease.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-autorelease.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-autorelease.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-autorelease.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-autorelease.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-autorelease.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-autorelease.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-autorelease.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-autorelease.dir/build.make tests/CMakeFiles/test-autorelease.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-autorelease.dir/build.make tests/CMakeFiles/test-autorelease.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=75,76 "Built target test-autorelease"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=76 "Built target test-autorelease"
 .PHONY : tests/CMakeFiles/test-autorelease.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2411,6 +2474,7 @@ tests/CMakeFiles/test-barrier.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-barrier.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-barrier.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-barrier.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-barrier.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-barrier.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-barrier.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-barrier.dir/all: common/CMakeFiles/common.dir/all
@@ -2421,7 +2485,7 @@ tests/CMakeFiles/test-barrier.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-barrier.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-barrier.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-barrier.dir/rule
@@ -2443,6 +2507,7 @@ tests/CMakeFiles/test-quantize-fns.dir/all: ggml/src/CMakeFiles/ggml-base.dir/al
 tests/CMakeFiles/test-quantize-fns.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-quantize-fns.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-quantize-fns.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-quantize-fns.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-quantize-fns.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-quantize-fns.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-quantize-fns.dir/all: common/CMakeFiles/common.dir/all
@@ -2453,7 +2518,7 @@ tests/CMakeFiles/test-quantize-fns.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-quantize-fns.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-quantize-fns.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-quantize-fns.dir/rule
@@ -2475,6 +2540,7 @@ tests/CMakeFiles/test-quantize-perf.dir/all: ggml/src/CMakeFiles/ggml-base.dir/a
 tests/CMakeFiles/test-quantize-perf.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-quantize-perf.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-quantize-perf.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-quantize-perf.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-quantize-perf.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-quantize-perf.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-quantize-perf.dir/all: common/CMakeFiles/common.dir/all
@@ -2485,7 +2551,7 @@ tests/CMakeFiles/test-quantize-perf.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-quantize-perf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-quantize-perf.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-quantize-perf.dir/rule
@@ -2507,6 +2573,7 @@ tests/CMakeFiles/test-rope.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-rope.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-rope.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-rope.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-rope.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-rope.dir/all: src/CMakeFiles/llama.dir/all
 tests/CMakeFiles/test-rope.dir/all: common/CMakeFiles/build_info.dir/all
 tests/CMakeFiles/test-rope.dir/all: common/CMakeFiles/common.dir/all
@@ -2517,7 +2584,7 @@ tests/CMakeFiles/test-rope.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-rope.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-rope.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-rope.dir/rule
@@ -2539,6 +2606,7 @@ tests/CMakeFiles/test-c.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 tests/CMakeFiles/test-c.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 tests/CMakeFiles/test-c.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 tests/CMakeFiles/test-c.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+tests/CMakeFiles/test-c.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 tests/CMakeFiles/test-c.dir/all: src/CMakeFiles/llama.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-c.dir/build.make tests/CMakeFiles/test-c.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test-c.dir/build.make tests/CMakeFiles/test-c.dir/build
@@ -2547,7 +2615,7 @@ tests/CMakeFiles/test-c.dir/all: src/CMakeFiles/llama.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test-c.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 26
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 27
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test-c.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test-c.dir/rule
@@ -2569,17 +2637,18 @@ examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all: ggml/src/CMakeFil
 examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all: src/CMakeFiles/llama.dir/all
 examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all: common/CMakeFiles/build_info.dir/all
 examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/batched-bench/CMakeFiles/llama-batched-bench.dir/build.make examples/batched-bench/CMakeFiles/llama-batched-bench.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/batched-bench/CMakeFiles/llama-batched-bench.dir/build.make examples/batched-bench/CMakeFiles/llama-batched-bench.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=32 "Built target llama-batched-bench"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=33 "Built target llama-batched-bench"
 .PHONY : examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all
 
 # Build rule for subdir invocation for target.
 examples/batched-bench/CMakeFiles/llama-batched-bench.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/batched-bench/CMakeFiles/llama-batched-bench.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/batched-bench/CMakeFiles/llama-batched-bench.dir/rule
@@ -2601,17 +2670,18 @@ examples/batched/CMakeFiles/llama-batched.dir/all: ggml/src/CMakeFiles/ggml-base
 examples/batched/CMakeFiles/llama-batched.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/batched/CMakeFiles/llama-batched.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/batched/CMakeFiles/llama-batched.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/batched/CMakeFiles/llama-batched.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/batched/CMakeFiles/llama-batched.dir/all: src/CMakeFiles/llama.dir/all
 examples/batched/CMakeFiles/llama-batched.dir/all: common/CMakeFiles/build_info.dir/all
 examples/batched/CMakeFiles/llama-batched.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/batched/CMakeFiles/llama-batched.dir/build.make examples/batched/CMakeFiles/llama-batched.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/batched/CMakeFiles/llama-batched.dir/build.make examples/batched/CMakeFiles/llama-batched.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=31 "Built target llama-batched"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=32 "Built target llama-batched"
 .PHONY : examples/batched/CMakeFiles/llama-batched.dir/all
 
 # Build rule for subdir invocation for target.
 examples/batched/CMakeFiles/llama-batched.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/batched/CMakeFiles/llama-batched.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/batched/CMakeFiles/llama-batched.dir/rule
@@ -2633,17 +2703,18 @@ examples/embedding/CMakeFiles/llama-embedding.dir/all: ggml/src/CMakeFiles/ggml-
 examples/embedding/CMakeFiles/llama-embedding.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/embedding/CMakeFiles/llama-embedding.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/embedding/CMakeFiles/llama-embedding.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/embedding/CMakeFiles/llama-embedding.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/embedding/CMakeFiles/llama-embedding.dir/all: src/CMakeFiles/llama.dir/all
 examples/embedding/CMakeFiles/llama-embedding.dir/all: common/CMakeFiles/build_info.dir/all
 examples/embedding/CMakeFiles/llama-embedding.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/embedding/CMakeFiles/llama-embedding.dir/build.make examples/embedding/CMakeFiles/llama-embedding.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/embedding/CMakeFiles/llama-embedding.dir/build.make examples/embedding/CMakeFiles/llama-embedding.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target llama-embedding"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=37 "Built target llama-embedding"
 .PHONY : examples/embedding/CMakeFiles/llama-embedding.dir/all
 
 # Build rule for subdir invocation for target.
 examples/embedding/CMakeFiles/llama-embedding.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 30
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/embedding/CMakeFiles/llama-embedding.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/embedding/CMakeFiles/llama-embedding.dir/rule
@@ -2665,17 +2736,18 @@ examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all: ggml/src/CMakeFil
 examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all: src/CMakeFiles/llama.dir/all
 examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all: common/CMakeFiles/build_info.dir/all
 examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/eval-callback/CMakeFiles/llama-eval-callback.dir/build.make examples/eval-callback/CMakeFiles/llama-eval-callback.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/eval-callback/CMakeFiles/llama-eval-callback.dir/build.make examples/eval-callback/CMakeFiles/llama-eval-callback.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=37 "Built target llama-eval-callback"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=38 "Built target llama-eval-callback"
 .PHONY : examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all
 
 # Build rule for subdir invocation for target.
 examples/eval-callback/CMakeFiles/llama-eval-callback.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/eval-callback/CMakeFiles/llama-eval-callback.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/eval-callback/CMakeFiles/llama-eval-callback.dir/rule
@@ -2697,17 +2769,18 @@ examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all: ggml/src/CMakeF
 examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all: src/CMakeFiles/llama.dir/all
 examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all: common/CMakeFiles/build_info.dir/all
 examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/build.make examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/build.make examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=39 "Built target llama-gbnf-validator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=40 "Built target llama-gbnf-validator"
 .PHONY : examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all
 
 # Build rule for subdir invocation for target.
 examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/gbnf-validator/CMakeFiles/llama-gbnf-validator.dir/rule
@@ -2729,6 +2802,7 @@ examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all: ggml/src/CMakeFiles/ggml-
 examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all: examples/gguf-hash/CMakeFiles/xxhash.dir/all
 examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all: examples/gguf-hash/CMakeFiles/sha1.dir/all
 examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all: examples/gguf-hash/CMakeFiles/sha256.dir/all
@@ -2739,7 +2813,7 @@ examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all: examples/gguf-hash/CMakeF
 
 # Build rule for subdir invocation for target.
 examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/gguf-hash/CMakeFiles/llama-gguf-hash.dir/rule
@@ -2786,12 +2860,12 @@ examples/gguf-hash/CMakeFiles/xxhash.dir/clean:
 examples/gguf-hash/CMakeFiles/sha1.dir/all:
 	$(MAKE) $(MAKESILENT) -f examples/gguf-hash/CMakeFiles/sha1.dir/build.make examples/gguf-hash/CMakeFiles/sha1.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/gguf-hash/CMakeFiles/sha1.dir/build.make examples/gguf-hash/CMakeFiles/sha1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target sha1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=73 "Built target sha1"
 .PHONY : examples/gguf-hash/CMakeFiles/sha1.dir/all
 
 # Build rule for subdir invocation for target.
 examples/gguf-hash/CMakeFiles/sha1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/gguf-hash/CMakeFiles/sha1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/gguf-hash/CMakeFiles/sha1.dir/rule
@@ -2812,12 +2886,12 @@ examples/gguf-hash/CMakeFiles/sha1.dir/clean:
 examples/gguf-hash/CMakeFiles/sha256.dir/all:
 	$(MAKE) $(MAKESILENT) -f examples/gguf-hash/CMakeFiles/sha256.dir/build.make examples/gguf-hash/CMakeFiles/sha256.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/gguf-hash/CMakeFiles/sha256.dir/build.make examples/gguf-hash/CMakeFiles/sha256.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=73 "Built target sha256"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target sha256"
 .PHONY : examples/gguf-hash/CMakeFiles/sha256.dir/all
 
 # Build rule for subdir invocation for target.
 examples/gguf-hash/CMakeFiles/sha256.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/gguf-hash/CMakeFiles/sha256.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/gguf-hash/CMakeFiles/sha256.dir/rule
@@ -2839,6 +2913,7 @@ examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all: ggml/src/CMakeFiles/ggm
 examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all: src/CMakeFiles/llama.dir/all
 examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all: common/CMakeFiles/build_info.dir/all
 examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all: common/CMakeFiles/common.dir/all
@@ -2849,7 +2924,7 @@ examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all: common/CMakeFiles/commo
 
 # Build rule for subdir invocation for target.
 examples/gguf-split/CMakeFiles/llama-gguf-split.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/gguf-split/CMakeFiles/llama-gguf-split.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/gguf-split/CMakeFiles/llama-gguf-split.dir/rule
@@ -2871,9 +2946,10 @@ examples/gguf/CMakeFiles/llama-gguf.dir/all: ggml/src/CMakeFiles/ggml-base.dir/a
 examples/gguf/CMakeFiles/llama-gguf.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/gguf/CMakeFiles/llama-gguf.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/gguf/CMakeFiles/llama-gguf.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/gguf/CMakeFiles/llama-gguf.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/gguf/CMakeFiles/llama-gguf.dir/build.make examples/gguf/CMakeFiles/llama-gguf.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/gguf/CMakeFiles/llama-gguf.dir/build.make examples/gguf/CMakeFiles/llama-gguf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=42 "Built target llama-gguf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target llama-gguf"
 .PHONY : examples/gguf/CMakeFiles/llama-gguf.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2900,17 +2976,18 @@ examples/gritlm/CMakeFiles/llama-gritlm.dir/all: ggml/src/CMakeFiles/ggml-base.d
 examples/gritlm/CMakeFiles/llama-gritlm.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/gritlm/CMakeFiles/llama-gritlm.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/gritlm/CMakeFiles/llama-gritlm.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/gritlm/CMakeFiles/llama-gritlm.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/gritlm/CMakeFiles/llama-gritlm.dir/all: src/CMakeFiles/llama.dir/all
 examples/gritlm/CMakeFiles/llama-gritlm.dir/all: common/CMakeFiles/build_info.dir/all
 examples/gritlm/CMakeFiles/llama-gritlm.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/gritlm/CMakeFiles/llama-gritlm.dir/build.make examples/gritlm/CMakeFiles/llama-gritlm.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/gritlm/CMakeFiles/llama-gritlm.dir/build.make examples/gritlm/CMakeFiles/llama-gritlm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target llama-gritlm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=45 "Built target llama-gritlm"
 .PHONY : examples/gritlm/CMakeFiles/llama-gritlm.dir/all
 
 # Build rule for subdir invocation for target.
 examples/gritlm/CMakeFiles/llama-gritlm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 30
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/gritlm/CMakeFiles/llama-gritlm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/gritlm/CMakeFiles/llama-gritlm.dir/rule
@@ -2932,17 +3009,18 @@ examples/imatrix/CMakeFiles/llama-imatrix.dir/all: ggml/src/CMakeFiles/ggml-base
 examples/imatrix/CMakeFiles/llama-imatrix.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/imatrix/CMakeFiles/llama-imatrix.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/imatrix/CMakeFiles/llama-imatrix.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/imatrix/CMakeFiles/llama-imatrix.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/imatrix/CMakeFiles/llama-imatrix.dir/all: src/CMakeFiles/llama.dir/all
 examples/imatrix/CMakeFiles/llama-imatrix.dir/all: common/CMakeFiles/build_info.dir/all
 examples/imatrix/CMakeFiles/llama-imatrix.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/imatrix/CMakeFiles/llama-imatrix.dir/build.make examples/imatrix/CMakeFiles/llama-imatrix.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/imatrix/CMakeFiles/llama-imatrix.dir/build.make examples/imatrix/CMakeFiles/llama-imatrix.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=45 "Built target llama-imatrix"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=46 "Built target llama-imatrix"
 .PHONY : examples/imatrix/CMakeFiles/llama-imatrix.dir/all
 
 # Build rule for subdir invocation for target.
 examples/imatrix/CMakeFiles/llama-imatrix.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/imatrix/CMakeFiles/llama-imatrix.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/imatrix/CMakeFiles/llama-imatrix.dir/rule
@@ -2964,17 +3042,18 @@ examples/infill/CMakeFiles/llama-infill.dir/all: ggml/src/CMakeFiles/ggml-base.d
 examples/infill/CMakeFiles/llama-infill.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/infill/CMakeFiles/llama-infill.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/infill/CMakeFiles/llama-infill.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/infill/CMakeFiles/llama-infill.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/infill/CMakeFiles/llama-infill.dir/all: src/CMakeFiles/llama.dir/all
 examples/infill/CMakeFiles/llama-infill.dir/all: common/CMakeFiles/build_info.dir/all
 examples/infill/CMakeFiles/llama-infill.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/infill/CMakeFiles/llama-infill.dir/build.make examples/infill/CMakeFiles/llama-infill.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/infill/CMakeFiles/llama-infill.dir/build.make examples/infill/CMakeFiles/llama-infill.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=46 "Built target llama-infill"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=47 "Built target llama-infill"
 .PHONY : examples/infill/CMakeFiles/llama-infill.dir/all
 
 # Build rule for subdir invocation for target.
 examples/infill/CMakeFiles/llama-infill.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/infill/CMakeFiles/llama-infill.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/infill/CMakeFiles/llama-infill.dir/rule
@@ -2996,17 +3075,18 @@ examples/llama-bench/CMakeFiles/llama-bench.dir/all: ggml/src/CMakeFiles/ggml-ba
 examples/llama-bench/CMakeFiles/llama-bench.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/llama-bench/CMakeFiles/llama-bench.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/llama-bench/CMakeFiles/llama-bench.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/llama-bench/CMakeFiles/llama-bench.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/llama-bench/CMakeFiles/llama-bench.dir/all: src/CMakeFiles/llama.dir/all
 examples/llama-bench/CMakeFiles/llama-bench.dir/all: common/CMakeFiles/build_info.dir/all
 examples/llama-bench/CMakeFiles/llama-bench.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/llama-bench/CMakeFiles/llama-bench.dir/build.make examples/llama-bench/CMakeFiles/llama-bench.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/llama-bench/CMakeFiles/llama-bench.dir/build.make examples/llama-bench/CMakeFiles/llama-bench.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=33 "Built target llama-bench"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=34 "Built target llama-bench"
 .PHONY : examples/llama-bench/CMakeFiles/llama-bench.dir/all
 
 # Build rule for subdir invocation for target.
 examples/llama-bench/CMakeFiles/llama-bench.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llama-bench/CMakeFiles/llama-bench.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/llama-bench/CMakeFiles/llama-bench.dir/rule
@@ -3028,17 +3108,18 @@ examples/lookahead/CMakeFiles/llama-lookahead.dir/all: ggml/src/CMakeFiles/ggml-
 examples/lookahead/CMakeFiles/llama-lookahead.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/lookahead/CMakeFiles/llama-lookahead.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/lookahead/CMakeFiles/llama-lookahead.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/lookahead/CMakeFiles/llama-lookahead.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/lookahead/CMakeFiles/llama-lookahead.dir/all: src/CMakeFiles/llama.dir/all
 examples/lookahead/CMakeFiles/llama-lookahead.dir/all: common/CMakeFiles/build_info.dir/all
 examples/lookahead/CMakeFiles/llama-lookahead.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/lookahead/CMakeFiles/llama-lookahead.dir/build.make examples/lookahead/CMakeFiles/llama-lookahead.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/lookahead/CMakeFiles/llama-lookahead.dir/build.make examples/lookahead/CMakeFiles/llama-lookahead.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=49 "Built target llama-lookahead"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=50 "Built target llama-lookahead"
 .PHONY : examples/lookahead/CMakeFiles/llama-lookahead.dir/all
 
 # Build rule for subdir invocation for target.
 examples/lookahead/CMakeFiles/llama-lookahead.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/lookahead/CMakeFiles/llama-lookahead.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/lookahead/CMakeFiles/llama-lookahead.dir/rule
@@ -3060,12 +3141,13 @@ examples/lookup/CMakeFiles/llama-lookup.dir/all: ggml/src/CMakeFiles/ggml-base.d
 examples/lookup/CMakeFiles/llama-lookup.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/lookup/CMakeFiles/llama-lookup.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/lookup/CMakeFiles/llama-lookup.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/lookup/CMakeFiles/llama-lookup.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/lookup/CMakeFiles/llama-lookup.dir/all: src/CMakeFiles/llama.dir/all
 examples/lookup/CMakeFiles/llama-lookup.dir/all: common/CMakeFiles/build_info.dir/all
 examples/lookup/CMakeFiles/llama-lookup.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/lookup/CMakeFiles/llama-lookup.dir/build.make examples/lookup/CMakeFiles/llama-lookup.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/lookup/CMakeFiles/llama-lookup.dir/build.make examples/lookup/CMakeFiles/llama-lookup.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=50 "Built target llama-lookup"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target llama-lookup"
 .PHONY : examples/lookup/CMakeFiles/llama-lookup.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3092,6 +3174,7 @@ examples/lookup/CMakeFiles/llama-lookup-create.dir/all: ggml/src/CMakeFiles/ggml
 examples/lookup/CMakeFiles/llama-lookup-create.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/lookup/CMakeFiles/llama-lookup-create.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/lookup/CMakeFiles/llama-lookup-create.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/lookup/CMakeFiles/llama-lookup-create.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/lookup/CMakeFiles/llama-lookup-create.dir/all: src/CMakeFiles/llama.dir/all
 examples/lookup/CMakeFiles/llama-lookup-create.dir/all: common/CMakeFiles/build_info.dir/all
 examples/lookup/CMakeFiles/llama-lookup-create.dir/all: common/CMakeFiles/common.dir/all
@@ -3102,7 +3185,7 @@ examples/lookup/CMakeFiles/llama-lookup-create.dir/all: common/CMakeFiles/common
 
 # Build rule for subdir invocation for target.
 examples/lookup/CMakeFiles/llama-lookup-create.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/lookup/CMakeFiles/llama-lookup-create.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/lookup/CMakeFiles/llama-lookup-create.dir/rule
@@ -3124,6 +3207,7 @@ examples/lookup/CMakeFiles/llama-lookup-merge.dir/all: ggml/src/CMakeFiles/ggml-
 examples/lookup/CMakeFiles/llama-lookup-merge.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/lookup/CMakeFiles/llama-lookup-merge.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/lookup/CMakeFiles/llama-lookup-merge.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/lookup/CMakeFiles/llama-lookup-merge.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/lookup/CMakeFiles/llama-lookup-merge.dir/all: src/CMakeFiles/llama.dir/all
 examples/lookup/CMakeFiles/llama-lookup-merge.dir/all: common/CMakeFiles/build_info.dir/all
 examples/lookup/CMakeFiles/llama-lookup-merge.dir/all: common/CMakeFiles/common.dir/all
@@ -3134,7 +3218,7 @@ examples/lookup/CMakeFiles/llama-lookup-merge.dir/all: common/CMakeFiles/common.
 
 # Build rule for subdir invocation for target.
 examples/lookup/CMakeFiles/llama-lookup-merge.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/lookup/CMakeFiles/llama-lookup-merge.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/lookup/CMakeFiles/llama-lookup-merge.dir/rule
@@ -3156,17 +3240,18 @@ examples/lookup/CMakeFiles/llama-lookup-stats.dir/all: ggml/src/CMakeFiles/ggml-
 examples/lookup/CMakeFiles/llama-lookup-stats.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/lookup/CMakeFiles/llama-lookup-stats.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/lookup/CMakeFiles/llama-lookup-stats.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/lookup/CMakeFiles/llama-lookup-stats.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/lookup/CMakeFiles/llama-lookup-stats.dir/all: src/CMakeFiles/llama.dir/all
 examples/lookup/CMakeFiles/llama-lookup-stats.dir/all: common/CMakeFiles/build_info.dir/all
 examples/lookup/CMakeFiles/llama-lookup-stats.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/lookup/CMakeFiles/llama-lookup-stats.dir/build.make examples/lookup/CMakeFiles/llama-lookup-stats.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/lookup/CMakeFiles/llama-lookup-stats.dir/build.make examples/lookup/CMakeFiles/llama-lookup-stats.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target llama-lookup-stats"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=53 "Built target llama-lookup-stats"
 .PHONY : examples/lookup/CMakeFiles/llama-lookup-stats.dir/all
 
 # Build rule for subdir invocation for target.
 examples/lookup/CMakeFiles/llama-lookup-stats.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 30
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/lookup/CMakeFiles/llama-lookup-stats.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/lookup/CMakeFiles/llama-lookup-stats.dir/rule
@@ -3188,17 +3273,18 @@ examples/main/CMakeFiles/llama-cli.dir/all: ggml/src/CMakeFiles/ggml-base.dir/al
 examples/main/CMakeFiles/llama-cli.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/main/CMakeFiles/llama-cli.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/main/CMakeFiles/llama-cli.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/main/CMakeFiles/llama-cli.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/main/CMakeFiles/llama-cli.dir/all: src/CMakeFiles/llama.dir/all
 examples/main/CMakeFiles/llama-cli.dir/all: common/CMakeFiles/build_info.dir/all
 examples/main/CMakeFiles/llama-cli.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/main/CMakeFiles/llama-cli.dir/build.make examples/main/CMakeFiles/llama-cli.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/main/CMakeFiles/llama-cli.dir/build.make examples/main/CMakeFiles/llama-cli.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=34 "Built target llama-cli"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=35 "Built target llama-cli"
 .PHONY : examples/main/CMakeFiles/llama-cli.dir/all
 
 # Build rule for subdir invocation for target.
 examples/main/CMakeFiles/llama-cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/main/CMakeFiles/llama-cli.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/main/CMakeFiles/llama-cli.dir/rule
@@ -3220,17 +3306,18 @@ examples/parallel/CMakeFiles/llama-parallel.dir/all: ggml/src/CMakeFiles/ggml-ba
 examples/parallel/CMakeFiles/llama-parallel.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/parallel/CMakeFiles/llama-parallel.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/parallel/CMakeFiles/llama-parallel.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/parallel/CMakeFiles/llama-parallel.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/parallel/CMakeFiles/llama-parallel.dir/all: src/CMakeFiles/llama.dir/all
 examples/parallel/CMakeFiles/llama-parallel.dir/all: common/CMakeFiles/build_info.dir/all
 examples/parallel/CMakeFiles/llama-parallel.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/parallel/CMakeFiles/llama-parallel.dir/build.make examples/parallel/CMakeFiles/llama-parallel.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/parallel/CMakeFiles/llama-parallel.dir/build.make examples/parallel/CMakeFiles/llama-parallel.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=54 "Built target llama-parallel"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=55 "Built target llama-parallel"
 .PHONY : examples/parallel/CMakeFiles/llama-parallel.dir/all
 
 # Build rule for subdir invocation for target.
 examples/parallel/CMakeFiles/llama-parallel.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/parallel/CMakeFiles/llama-parallel.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/parallel/CMakeFiles/llama-parallel.dir/rule
@@ -3252,17 +3339,18 @@ examples/passkey/CMakeFiles/llama-passkey.dir/all: ggml/src/CMakeFiles/ggml-base
 examples/passkey/CMakeFiles/llama-passkey.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/passkey/CMakeFiles/llama-passkey.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/passkey/CMakeFiles/llama-passkey.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/passkey/CMakeFiles/llama-passkey.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/passkey/CMakeFiles/llama-passkey.dir/all: src/CMakeFiles/llama.dir/all
 examples/passkey/CMakeFiles/llama-passkey.dir/all: common/CMakeFiles/build_info.dir/all
 examples/passkey/CMakeFiles/llama-passkey.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/passkey/CMakeFiles/llama-passkey.dir/build.make examples/passkey/CMakeFiles/llama-passkey.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/passkey/CMakeFiles/llama-passkey.dir/build.make examples/passkey/CMakeFiles/llama-passkey.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=55 "Built target llama-passkey"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=56 "Built target llama-passkey"
 .PHONY : examples/passkey/CMakeFiles/llama-passkey.dir/all
 
 # Build rule for subdir invocation for target.
 examples/passkey/CMakeFiles/llama-passkey.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/passkey/CMakeFiles/llama-passkey.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/passkey/CMakeFiles/llama-passkey.dir/rule
@@ -3284,17 +3372,18 @@ examples/perplexity/CMakeFiles/llama-perplexity.dir/all: ggml/src/CMakeFiles/ggm
 examples/perplexity/CMakeFiles/llama-perplexity.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/perplexity/CMakeFiles/llama-perplexity.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/perplexity/CMakeFiles/llama-perplexity.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/perplexity/CMakeFiles/llama-perplexity.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/perplexity/CMakeFiles/llama-perplexity.dir/all: src/CMakeFiles/llama.dir/all
 examples/perplexity/CMakeFiles/llama-perplexity.dir/all: common/CMakeFiles/build_info.dir/all
 examples/perplexity/CMakeFiles/llama-perplexity.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/perplexity/CMakeFiles/llama-perplexity.dir/build.make examples/perplexity/CMakeFiles/llama-perplexity.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/perplexity/CMakeFiles/llama-perplexity.dir/build.make examples/perplexity/CMakeFiles/llama-perplexity.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=56 "Built target llama-perplexity"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=57 "Built target llama-perplexity"
 .PHONY : examples/perplexity/CMakeFiles/llama-perplexity.dir/all
 
 # Build rule for subdir invocation for target.
 examples/perplexity/CMakeFiles/llama-perplexity.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/perplexity/CMakeFiles/llama-perplexity.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/perplexity/CMakeFiles/llama-perplexity.dir/rule
@@ -3316,6 +3405,7 @@ examples/quantize/CMakeFiles/llama-quantize.dir/all: ggml/src/CMakeFiles/ggml-ba
 examples/quantize/CMakeFiles/llama-quantize.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/quantize/CMakeFiles/llama-quantize.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/quantize/CMakeFiles/llama-quantize.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/quantize/CMakeFiles/llama-quantize.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/quantize/CMakeFiles/llama-quantize.dir/all: src/CMakeFiles/llama.dir/all
 examples/quantize/CMakeFiles/llama-quantize.dir/all: common/CMakeFiles/build_info.dir/all
 examples/quantize/CMakeFiles/llama-quantize.dir/all: common/CMakeFiles/common.dir/all
@@ -3326,7 +3416,7 @@ examples/quantize/CMakeFiles/llama-quantize.dir/all: common/CMakeFiles/common.di
 
 # Build rule for subdir invocation for target.
 examples/quantize/CMakeFiles/llama-quantize.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/quantize/CMakeFiles/llama-quantize.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/quantize/CMakeFiles/llama-quantize.dir/rule
@@ -3348,17 +3438,18 @@ examples/retrieval/CMakeFiles/llama-retrieval.dir/all: ggml/src/CMakeFiles/ggml-
 examples/retrieval/CMakeFiles/llama-retrieval.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/retrieval/CMakeFiles/llama-retrieval.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/retrieval/CMakeFiles/llama-retrieval.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/retrieval/CMakeFiles/llama-retrieval.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/retrieval/CMakeFiles/llama-retrieval.dir/all: src/CMakeFiles/llama.dir/all
 examples/retrieval/CMakeFiles/llama-retrieval.dir/all: common/CMakeFiles/build_info.dir/all
 examples/retrieval/CMakeFiles/llama-retrieval.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/retrieval/CMakeFiles/llama-retrieval.dir/build.make examples/retrieval/CMakeFiles/llama-retrieval.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/retrieval/CMakeFiles/llama-retrieval.dir/build.make examples/retrieval/CMakeFiles/llama-retrieval.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target llama-retrieval"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=61 "Built target llama-retrieval"
 .PHONY : examples/retrieval/CMakeFiles/llama-retrieval.dir/all
 
 # Build rule for subdir invocation for target.
 examples/retrieval/CMakeFiles/llama-retrieval.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 30
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/retrieval/CMakeFiles/llama-retrieval.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/retrieval/CMakeFiles/llama-retrieval.dir/rule
@@ -3380,17 +3471,18 @@ examples/server/CMakeFiles/llama-server.dir/all: ggml/src/CMakeFiles/ggml-base.d
 examples/server/CMakeFiles/llama-server.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/server/CMakeFiles/llama-server.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/server/CMakeFiles/llama-server.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/server/CMakeFiles/llama-server.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/server/CMakeFiles/llama-server.dir/all: src/CMakeFiles/llama.dir/all
 examples/server/CMakeFiles/llama-server.dir/all: common/CMakeFiles/build_info.dir/all
 examples/server/CMakeFiles/llama-server.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/server/CMakeFiles/llama-server.dir/build.make examples/server/CMakeFiles/llama-server.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/server/CMakeFiles/llama-server.dir/build.make examples/server/CMakeFiles/llama-server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=64 "Built target llama-server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=64,65 "Built target llama-server"
 .PHONY : examples/server/CMakeFiles/llama-server.dir/all
 
 # Build rule for subdir invocation for target.
 examples/server/CMakeFiles/llama-server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/server/CMakeFiles/llama-server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/server/CMakeFiles/llama-server.dir/rule
@@ -3412,6 +3504,7 @@ examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all: ggml/src/CMak
 examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all: src/CMakeFiles/llama.dir/all
 examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all: common/CMakeFiles/build_info.dir/all
 examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all: common/CMakeFiles/common.dir/all
@@ -3422,7 +3515,7 @@ examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all: common/CMakeF
 
 # Build rule for subdir invocation for target.
 examples/save-load-state/CMakeFiles/llama-save-load-state.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/save-load-state/CMakeFiles/llama-save-load-state.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/save-load-state/CMakeFiles/llama-save-load-state.dir/rule
@@ -3444,12 +3537,13 @@ examples/run/CMakeFiles/llama-run.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 examples/run/CMakeFiles/llama-run.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/run/CMakeFiles/llama-run.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/run/CMakeFiles/llama-run.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/run/CMakeFiles/llama-run.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/run/CMakeFiles/llama-run.dir/all: src/CMakeFiles/llama.dir/all
 examples/run/CMakeFiles/llama-run.dir/all: common/CMakeFiles/build_info.dir/all
 examples/run/CMakeFiles/llama-run.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/run/CMakeFiles/llama-run.dir/build.make examples/run/CMakeFiles/llama-run.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/run/CMakeFiles/llama-run.dir/build.make examples/run/CMakeFiles/llama-run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=61,62 "Built target llama-run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=62 "Built target llama-run"
 .PHONY : examples/run/CMakeFiles/llama-run.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3476,15 +3570,16 @@ examples/simple/CMakeFiles/llama-simple.dir/all: ggml/src/CMakeFiles/ggml-base.d
 examples/simple/CMakeFiles/llama-simple.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/simple/CMakeFiles/llama-simple.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/simple/CMakeFiles/llama-simple.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/simple/CMakeFiles/llama-simple.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/simple/CMakeFiles/llama-simple.dir/all: src/CMakeFiles/llama.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/simple/CMakeFiles/llama-simple.dir/build.make examples/simple/CMakeFiles/llama-simple.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/simple/CMakeFiles/llama-simple.dir/build.make examples/simple/CMakeFiles/llama-simple.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=65 "Built target llama-simple"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=66 "Built target llama-simple"
 .PHONY : examples/simple/CMakeFiles/llama-simple.dir/all
 
 # Build rule for subdir invocation for target.
 examples/simple/CMakeFiles/llama-simple.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 26
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 27
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/simple/CMakeFiles/llama-simple.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/simple/CMakeFiles/llama-simple.dir/rule
@@ -3506,15 +3601,16 @@ examples/simple-chat/CMakeFiles/llama-simple-chat.dir/all: ggml/src/CMakeFiles/g
 examples/simple-chat/CMakeFiles/llama-simple-chat.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/simple-chat/CMakeFiles/llama-simple-chat.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/simple-chat/CMakeFiles/llama-simple-chat.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/simple-chat/CMakeFiles/llama-simple-chat.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/simple-chat/CMakeFiles/llama-simple-chat.dir/all: src/CMakeFiles/llama.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/simple-chat/CMakeFiles/llama-simple-chat.dir/build.make examples/simple-chat/CMakeFiles/llama-simple-chat.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/simple-chat/CMakeFiles/llama-simple-chat.dir/build.make examples/simple-chat/CMakeFiles/llama-simple-chat.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=66 "Built target llama-simple-chat"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=67 "Built target llama-simple-chat"
 .PHONY : examples/simple-chat/CMakeFiles/llama-simple-chat.dir/all
 
 # Build rule for subdir invocation for target.
 examples/simple-chat/CMakeFiles/llama-simple-chat.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 26
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 27
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/simple-chat/CMakeFiles/llama-simple-chat.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/simple-chat/CMakeFiles/llama-simple-chat.dir/rule
@@ -3536,12 +3632,13 @@ examples/speculative/CMakeFiles/llama-speculative.dir/all: ggml/src/CMakeFiles/g
 examples/speculative/CMakeFiles/llama-speculative.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/speculative/CMakeFiles/llama-speculative.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/speculative/CMakeFiles/llama-speculative.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/speculative/CMakeFiles/llama-speculative.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/speculative/CMakeFiles/llama-speculative.dir/all: src/CMakeFiles/llama.dir/all
 examples/speculative/CMakeFiles/llama-speculative.dir/all: common/CMakeFiles/build_info.dir/all
 examples/speculative/CMakeFiles/llama-speculative.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/speculative/CMakeFiles/llama-speculative.dir/build.make examples/speculative/CMakeFiles/llama-speculative.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/speculative/CMakeFiles/llama-speculative.dir/build.make examples/speculative/CMakeFiles/llama-speculative.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=67 "Built target llama-speculative"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target llama-speculative"
 .PHONY : examples/speculative/CMakeFiles/llama-speculative.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3568,6 +3665,7 @@ examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all: ggml/sr
 examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all: src/CMakeFiles/llama.dir/all
 examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all: common/CMakeFiles/build_info.dir/all
 examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all: common/CMakeFiles/common.dir/all
@@ -3578,7 +3676,7 @@ examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all: common/
 
 # Build rule for subdir invocation for target.
 examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/speculative-simple/CMakeFiles/llama-speculative-simple.dir/rule
@@ -3600,6 +3698,7 @@ examples/tokenize/CMakeFiles/llama-tokenize.dir/all: ggml/src/CMakeFiles/ggml-ba
 examples/tokenize/CMakeFiles/llama-tokenize.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/tokenize/CMakeFiles/llama-tokenize.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/tokenize/CMakeFiles/llama-tokenize.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/tokenize/CMakeFiles/llama-tokenize.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/tokenize/CMakeFiles/llama-tokenize.dir/all: src/CMakeFiles/llama.dir/all
 examples/tokenize/CMakeFiles/llama-tokenize.dir/all: common/CMakeFiles/build_info.dir/all
 examples/tokenize/CMakeFiles/llama-tokenize.dir/all: common/CMakeFiles/common.dir/all
@@ -3610,7 +3709,7 @@ examples/tokenize/CMakeFiles/llama-tokenize.dir/all: common/CMakeFiles/common.di
 
 # Build rule for subdir invocation for target.
 examples/tokenize/CMakeFiles/llama-tokenize.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/tokenize/CMakeFiles/llama-tokenize.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/tokenize/CMakeFiles/llama-tokenize.dir/rule
@@ -3632,6 +3731,7 @@ examples/tts/CMakeFiles/llama-tts.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 examples/tts/CMakeFiles/llama-tts.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/tts/CMakeFiles/llama-tts.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/tts/CMakeFiles/llama-tts.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/tts/CMakeFiles/llama-tts.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/tts/CMakeFiles/llama-tts.dir/all: src/CMakeFiles/llama.dir/all
 examples/tts/CMakeFiles/llama-tts.dir/all: common/CMakeFiles/build_info.dir/all
 examples/tts/CMakeFiles/llama-tts.dir/all: common/CMakeFiles/common.dir/all
@@ -3642,7 +3742,7 @@ examples/tts/CMakeFiles/llama-tts.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 examples/tts/CMakeFiles/llama-tts.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/tts/CMakeFiles/llama-tts.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/tts/CMakeFiles/llama-tts.dir/rule
@@ -3664,17 +3764,18 @@ examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all: ggml/src/CMakeFiles/ggml-ba
 examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all: src/CMakeFiles/llama.dir/all
 examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all: common/CMakeFiles/build_info.dir/all
 examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/gen-docs/CMakeFiles/llama-gen-docs.dir/build.make examples/gen-docs/CMakeFiles/llama-gen-docs.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/gen-docs/CMakeFiles/llama-gen-docs.dir/build.make examples/gen-docs/CMakeFiles/llama-gen-docs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=41 "Built target llama-gen-docs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=42 "Built target llama-gen-docs"
 .PHONY : examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all
 
 # Build rule for subdir invocation for target.
 examples/gen-docs/CMakeFiles/llama-gen-docs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/gen-docs/CMakeFiles/llama-gen-docs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/gen-docs/CMakeFiles/llama-gen-docs.dir/rule
@@ -3696,12 +3797,13 @@ examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/al
 examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/all: src/CMakeFiles/llama.dir/all
 examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/all: common/CMakeFiles/build_info.dir/all
 examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/build.make examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/build.make examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=35 "Built target llama-convert-llama2c-to-ggml"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target llama-convert-llama2c-to-ggml"
 .PHONY : examples/convert-llama2c-to-ggml/CMakeFiles/llama-convert-llama2c-to-ggml.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3728,6 +3830,7 @@ examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all: ggml/src/
 examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all: src/CMakeFiles/llama.dir/all
 examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all: common/CMakeFiles/build_info.dir/all
 examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all: common/CMakeFiles/common.dir/all
@@ -3738,7 +3841,7 @@ examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all: common/CM
 
 # Build rule for subdir invocation for target.
 examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/cvector-generator/CMakeFiles/llama-cvector-generator.dir/rule
@@ -3760,17 +3863,18 @@ examples/export-lora/CMakeFiles/llama-export-lora.dir/all: ggml/src/CMakeFiles/g
 examples/export-lora/CMakeFiles/llama-export-lora.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/export-lora/CMakeFiles/llama-export-lora.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/export-lora/CMakeFiles/llama-export-lora.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/export-lora/CMakeFiles/llama-export-lora.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/export-lora/CMakeFiles/llama-export-lora.dir/all: src/CMakeFiles/llama.dir/all
 examples/export-lora/CMakeFiles/llama-export-lora.dir/all: common/CMakeFiles/build_info.dir/all
 examples/export-lora/CMakeFiles/llama-export-lora.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/export-lora/CMakeFiles/llama-export-lora.dir/build.make examples/export-lora/CMakeFiles/llama-export-lora.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/export-lora/CMakeFiles/llama-export-lora.dir/build.make examples/export-lora/CMakeFiles/llama-export-lora.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=38 "Built target llama-export-lora"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=39 "Built target llama-export-lora"
 .PHONY : examples/export-lora/CMakeFiles/llama-export-lora.dir/all
 
 # Build rule for subdir invocation for target.
 examples/export-lora/CMakeFiles/llama-export-lora.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/export-lora/CMakeFiles/llama-export-lora.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/export-lora/CMakeFiles/llama-export-lora.dir/rule
@@ -3792,6 +3896,7 @@ examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/all: ggml/src/CMakeF
 examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/all: src/CMakeFiles/llama.dir/all
 examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/all: common/CMakeFiles/build_info.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/build.make examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/depend
@@ -3801,7 +3906,7 @@ examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/all: common/CMakeFil
 
 # Build rule for subdir invocation for target.
 examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 26
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 27
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/quantize-stats/CMakeFiles/llama-quantize-stats.dir/rule
@@ -3823,6 +3928,7 @@ examples/llava/CMakeFiles/llava.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 examples/llava/CMakeFiles/llava.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/llava/CMakeFiles/llava.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/llava/CMakeFiles/llava.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/llava/CMakeFiles/llava.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/llava/CMakeFiles/llava.dir/all: src/CMakeFiles/llama.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llava.dir/build.make examples/llava/CMakeFiles/llava.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llava.dir/build.make examples/llava/CMakeFiles/llava.dir/build
@@ -3831,7 +3937,7 @@ examples/llava/CMakeFiles/llava.dir/all: src/CMakeFiles/llama.dir/all
 
 # Build rule for subdir invocation for target.
 examples/llava/CMakeFiles/llava.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 26
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 27
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llava/CMakeFiles/llava.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/llava/CMakeFiles/llava.dir/rule
@@ -3857,7 +3963,7 @@ examples/llava/CMakeFiles/llava_static.dir/all: examples/llava/CMakeFiles/llava.
 
 # Build rule for subdir invocation for target.
 examples/llava/CMakeFiles/llava_static.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 26
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 27
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llava/CMakeFiles/llava_static.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/llava/CMakeFiles/llava_static.dir/rule
@@ -3879,18 +3985,19 @@ examples/llava/CMakeFiles/llama-llava-cli.dir/all: ggml/src/CMakeFiles/ggml-base
 examples/llava/CMakeFiles/llama-llava-cli.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/llava/CMakeFiles/llama-llava-cli.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/llava/CMakeFiles/llama-llava-cli.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/llava/CMakeFiles/llama-llava-cli.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/llava/CMakeFiles/llama-llava-cli.dir/all: src/CMakeFiles/llama.dir/all
 examples/llava/CMakeFiles/llama-llava-cli.dir/all: common/CMakeFiles/build_info.dir/all
 examples/llava/CMakeFiles/llama-llava-cli.dir/all: common/CMakeFiles/common.dir/all
 examples/llava/CMakeFiles/llama-llava-cli.dir/all: examples/llava/CMakeFiles/llava.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llama-llava-cli.dir/build.make examples/llava/CMakeFiles/llama-llava-cli.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llama-llava-cli.dir/build.make examples/llava/CMakeFiles/llama-llava-cli.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=47 "Built target llama-llava-cli"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=48 "Built target llama-llava-cli"
 .PHONY : examples/llava/CMakeFiles/llama-llava-cli.dir/all
 
 # Build rule for subdir invocation for target.
 examples/llava/CMakeFiles/llama-llava-cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llava/CMakeFiles/llama-llava-cli.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/llava/CMakeFiles/llama-llava-cli.dir/rule
@@ -3912,18 +4019,19 @@ examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all: ggml/src/CMakeFiles/ggml-b
 examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all: src/CMakeFiles/llama.dir/all
 examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all: common/CMakeFiles/build_info.dir/all
 examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all: common/CMakeFiles/common.dir/all
 examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all: examples/llava/CMakeFiles/llava.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llama-minicpmv-cli.dir/build.make examples/llava/CMakeFiles/llama-minicpmv-cli.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llama-minicpmv-cli.dir/build.make examples/llava/CMakeFiles/llama-minicpmv-cli.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=53 "Built target llama-minicpmv-cli"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=54 "Built target llama-minicpmv-cli"
 .PHONY : examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all
 
 # Build rule for subdir invocation for target.
 examples/llava/CMakeFiles/llama-minicpmv-cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llava/CMakeFiles/llama-minicpmv-cli.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/llava/CMakeFiles/llama-minicpmv-cli.dir/rule
@@ -3945,6 +4053,7 @@ examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all: ggml/src/CMakeFiles/ggml-ba
 examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all: src/CMakeFiles/llama.dir/all
 examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all: common/CMakeFiles/build_info.dir/all
 examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all: common/CMakeFiles/common.dir/all
@@ -3956,7 +4065,7 @@ examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all: examples/llava/CMakeFiles/l
 
 # Build rule for subdir invocation for target.
 examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/llava/CMakeFiles/llama-qwen2vl-cli.dir/rule
@@ -3978,18 +4087,19 @@ examples/llava/CMakeFiles/llama-gemma3-cli.dir/all: ggml/src/CMakeFiles/ggml-bas
 examples/llava/CMakeFiles/llama-gemma3-cli.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/llava/CMakeFiles/llama-gemma3-cli.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/llava/CMakeFiles/llama-gemma3-cli.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/llava/CMakeFiles/llama-gemma3-cli.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/llava/CMakeFiles/llama-gemma3-cli.dir/all: src/CMakeFiles/llama.dir/all
 examples/llava/CMakeFiles/llama-gemma3-cli.dir/all: common/CMakeFiles/build_info.dir/all
 examples/llava/CMakeFiles/llama-gemma3-cli.dir/all: common/CMakeFiles/common.dir/all
 examples/llava/CMakeFiles/llama-gemma3-cli.dir/all: examples/llava/CMakeFiles/llava.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llama-gemma3-cli.dir/build.make examples/llava/CMakeFiles/llama-gemma3-cli.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llama-gemma3-cli.dir/build.make examples/llava/CMakeFiles/llama-gemma3-cli.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=40 "Built target llama-gemma3-cli"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=41 "Built target llama-gemma3-cli"
 .PHONY : examples/llava/CMakeFiles/llama-gemma3-cli.dir/all
 
 # Build rule for subdir invocation for target.
 examples/llava/CMakeFiles/llama-gemma3-cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llava/CMakeFiles/llama-gemma3-cli.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/llava/CMakeFiles/llama-gemma3-cli.dir/rule
@@ -4011,18 +4121,19 @@ examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all: ggml/src/CMakeF
 examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all: src/CMakeFiles/llama.dir/all
 examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all: common/CMakeFiles/build_info.dir/all
 examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all: common/CMakeFiles/common.dir/all
 examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all: examples/llava/CMakeFiles/llava.dir/all
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/build.make examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/build.make examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=48 "Built target llama-llava-clip-quantize-cli"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=49 "Built target llama-llava-clip-quantize-cli"
 .PHONY : examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all
 
 # Build rule for subdir invocation for target.
 examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : examples/llava/CMakeFiles/llama-llava-clip-quantize-cli.dir/rule
@@ -4044,6 +4155,7 @@ pocs/vdot/CMakeFiles/llama-vdot.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 pocs/vdot/CMakeFiles/llama-vdot.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 pocs/vdot/CMakeFiles/llama-vdot.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 pocs/vdot/CMakeFiles/llama-vdot.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+pocs/vdot/CMakeFiles/llama-vdot.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 pocs/vdot/CMakeFiles/llama-vdot.dir/all: src/CMakeFiles/llama.dir/all
 pocs/vdot/CMakeFiles/llama-vdot.dir/all: common/CMakeFiles/build_info.dir/all
 pocs/vdot/CMakeFiles/llama-vdot.dir/all: common/CMakeFiles/common.dir/all
@@ -4054,7 +4166,7 @@ pocs/vdot/CMakeFiles/llama-vdot.dir/all: common/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 pocs/vdot/CMakeFiles/llama-vdot.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pocs/vdot/CMakeFiles/llama-vdot.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/android/CMakeFiles 0
 .PHONY : pocs/vdot/CMakeFiles/llama-vdot.dir/rule
@@ -4076,12 +4188,13 @@ pocs/vdot/CMakeFiles/llama-q8dot.dir/all: ggml/src/CMakeFiles/ggml-base.dir/all
 pocs/vdot/CMakeFiles/llama-q8dot.dir/all: ggml/src/CMakeFiles/ggml.dir/all
 pocs/vdot/CMakeFiles/llama-q8dot.dir/all: ggml/src/CMakeFiles/ggml-cpu.dir/all
 pocs/vdot/CMakeFiles/llama-q8dot.dir/all: ggml/src/ggml-opencl/CMakeFiles/ggml-opencl.dir/all
+pocs/vdot/CMakeFiles/llama-q8dot.dir/all: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/all
 pocs/vdot/CMakeFiles/llama-q8dot.dir/all: src/CMakeFiles/llama.dir/all
 pocs/vdot/CMakeFiles/llama-q8dot.dir/all: common/CMakeFiles/build_info.dir/all
 pocs/vdot/CMakeFiles/llama-q8dot.dir/all: common/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f pocs/vdot/CMakeFiles/llama-q8dot.dir/build.make pocs/vdot/CMakeFiles/llama-q8dot.dir/depend
 	$(MAKE) $(MAKESILENT) -f pocs/vdot/CMakeFiles/llama-q8dot.dir/build.make pocs/vdot/CMakeFiles/llama-q8dot.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num=57 "Built target llama-q8dot"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kws/ggml-hexagon/android/CMakeFiles --progress-num= "Built target llama-q8dot"
 .PHONY : pocs/vdot/CMakeFiles/llama-q8dot.dir/all
 
 # Build rule for subdir invocation for target.

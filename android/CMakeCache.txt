@@ -417,7 +417,7 @@ GGML_FMA:BOOL=OFF
 GGML_GPROF:BOOL=OFF
 
 //ggml: use HEXAGON
-GGML_HEXAGON:BOOL=OFF
+GGML_HEXAGON:BOOL=ON
 
 //ggml: use HIP
 GGML_HIP:BOOL=OFF
@@ -636,6 +636,9 @@ LLAMA_SERVER_SSL:BOOL=OFF
 //Use system libggml
 LLAMA_USE_SYSTEM_GGML:BOOL=OFF
 
+//Path to a library.
+LOG_LIB:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/28/liblog.so
+
 //Command to build the project
 MAKECOMMAND:STRING=/usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 
@@ -669,11 +672,23 @@ OpenMP_C_LIB_NAMES:STRING=omp
 //Path to the omp library for OpenMP
 OpenMP_omp_LIBRARY:FILEPATH=/home/kws/android-sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64/libomp.so
 
+//customized library search path for QNN backend
+QNN_DEFAULT_LIB_SEARCH_PATH:STRING=/data/local/tmp/
+
 //No help, variable specified on the command line.
 QNN_SDK_PATH:UNINITIALIZED=/home/kws/qairt/2.31.0.250130
 
 //Name of the computer/site where compile is being run
 SITE:STRING=CASL6
+
+//Value Computed by CMake
+ggml-hexagon_BINARY_DIR:STATIC=/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon
+
+//Value Computed by CMake
+ggml-hexagon_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+ggml-hexagon_SOURCE_DIR:STATIC=/home/kws/ggml-hexagon/ggml/src/ggml-hexagon
 
 //Value Computed by CMake
 ggml_BINARY_DIR:STATIC=/home/kws/ggml-hexagon/android/ggml
@@ -838,7 +853,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=46
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=47
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -906,7 +921,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/usr/bin/python3.10][cfound compo
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //List of backends for cmake package
-GGML_AVAILABLE_BACKENDS:INTERNAL=ggml-cpu;ggml-opencl
+GGML_AVAILABLE_BACKENDS:INTERNAL=ggml-cpu;ggml-opencl;ggml-hexagon
 //Test GGML_COMPILER_SUPPORTS_FP16_FORMAT_I3E
 GGML_COMPILER_SUPPORTS_FP16_FORMAT_I3E:INTERNAL=
 //STRINGS property for variable: GGML_CUDA_COMPRESSION_MODE
