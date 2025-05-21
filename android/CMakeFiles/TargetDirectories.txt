@@ -65,14 +65,6 @@
 /home/kws/ggml-hexagon/android/ggml/src/ggml-opencl/CMakeFiles/install.dir
 /home/kws/ggml-hexagon/android/ggml/src/ggml-opencl/CMakeFiles/install/local.dir
 /home/kws/ggml-hexagon/android/ggml/src/ggml-opencl/CMakeFiles/install/strip.dir
-/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir
-/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon/CMakeFiles/test.dir
-/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon/CMakeFiles/edit_cache.dir
-/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon/CMakeFiles/rebuild_cache.dir
-/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon/CMakeFiles/list_install_components.dir
-/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon/CMakeFiles/install.dir
-/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon/CMakeFiles/install/local.dir
-/home/kws/ggml-hexagon/android/ggml/src/ggml-hexagon/CMakeFiles/install/strip.dir
 /home/kws/ggml-hexagon/android/src/CMakeFiles/llama.dir
 /home/kws/ggml-hexagon/android/src/CMakeFiles/test.dir
 /home/kws/ggml-hexagon/android/src/CMakeFiles/edit_cache.dir

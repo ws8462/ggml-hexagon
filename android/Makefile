@@ -588,19 +588,6 @@ ggml-opencl/fast:
 .PHONY : ggml-opencl/fast
 
 #=============================================================================
-# Target rules for targets named ggml-hexagon
-
-# Build rule for target.
-ggml-hexagon: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml-hexagon
-.PHONY : ggml-hexagon
-
-# fast build rule for target.
-ggml-hexagon/fast:
-	$(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build
-.PHONY : ggml-hexagon/fast
-
-#=============================================================================
 # Target rules for targets named llama
 
 # Build rule for target.
@@ -1595,7 +1582,6 @@ help:
 	@echo "... ggml"
 	@echo "... ggml-base"
 	@echo "... ggml-cpu"
-	@echo "... ggml-hexagon"
 	@echo "... ggml-opencl"
 	@echo "... llama"
 	@echo "... llama-batched"
