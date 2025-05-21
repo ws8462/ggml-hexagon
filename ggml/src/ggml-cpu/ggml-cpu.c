@@ -13554,6 +13554,42 @@ const char* ggml_op_to_string(enum ggml_op op) {
         default: return "UNKNOWN_OP";
     }
 }
+const char * ggml_type_to_string(enum ggml_type type) {
+    switch (type) {
+        case GGML_TYPE_F32:     return "F32";
+        case GGML_TYPE_F16:     return "F16";
+        case GGML_TYPE_Q4_0:    return "Q4_0";
+        case GGML_TYPE_Q4_1:    return "Q4_1";
+        case GGML_TYPE_Q5_0:    return "Q5_0";
+        case GGML_TYPE_Q5_1:    return "Q5_1";
+        case GGML_TYPE_Q8_0:    return "Q8_0";
+        case GGML_TYPE_Q8_1:    return "Q8_1";
+        case GGML_TYPE_Q2_K:    return "Q2_K";
+        case GGML_TYPE_Q3_K:    return "Q3_K";
+        case GGML_TYPE_Q4_K:    return "Q4_K";
+        case GGML_TYPE_Q5_K:    return "Q5_K";
+        case GGML_TYPE_Q6_K:    return "Q6_K";
+        case GGML_TYPE_Q8_K:    return "Q8_K";
+        case GGML_TYPE_IQ2_XXS: return "IQ2_XXS";
+        case GGML_TYPE_IQ2_XS:  return "IQ2_XS";
+        case GGML_TYPE_IQ3_XXS: return "IQ3_XXS";
+        case GGML_TYPE_IQ1_S:   return "IQ1_S";
+        case GGML_TYPE_IQ4_NL:  return "IQ4_NL";
+        case GGML_TYPE_IQ3_S:   return "IQ3_S";
+        case GGML_TYPE_IQ2_S:   return "IQ2_S";
+        case GGML_TYPE_IQ4_XS:  return "IQ4_XS";
+        case GGML_TYPE_I8:      return "I8";
+        case GGML_TYPE_I16:     return "I16";
+        case GGML_TYPE_I32:     return "I32";
+        case GGML_TYPE_I64:     return "I64";
+        case GGML_TYPE_F64:     return "F64";
+        case GGML_TYPE_IQ1_M:   return "IQ1_M";
+        case GGML_TYPE_BF16:    return "BF16";
+        case GGML_TYPE_TQ1_0:   return "TQ1_0";
+        case GGML_TYPE_TQ2_0:   return "TQ2_0";
+        default:                return "UNKNOWN";
+    }
+}
 
 static thread_ret_t ggml_graph_compute_thread(void * data) {
     struct ggml_compute_state * state = (struct ggml_compute_state *) data;
@@ -13603,16 +13639,32 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
         
         #pragma omp critical
         {
-        printf("=======================================\n");
-        printf("%s\n", node->name);
-        printf("%s\n", ggml_op_to_string(node->op));
-        printf("%dth thread among %d threads\n", state->ith, state->threadpool->n_threads_max);
-        //printf("current_core = %d\n", cpu);
-        printf("compute_duration: %f ms\n", compute_duration);
-        printf("sync_duration: %f ms\n", sync_duration);
-        printf("sum_of_duration: %f ms\n", compute_duration + sync_duration);
-        printf("\n");
-        printf("=======================================\n\n");
+            if (node->op == GGML_OP_MUL_MAT) {
+                printf("=======================================\n");
+                printf("%s\n", node->name);
+                printf("%s\n", ggml_op_to_string(node->op));
+                printf("%s\n", ggml_type_to_string(node->type));
+                    if (node->src[0]) {
+                    printf("src[0] name      : %s\n", node->src[0]->name);
+                    printf("src[0] shape     : [%lld, %lld]\n", node->src[0]->ne[1], node->src[0]->ne[0]);
+                    printf("src[0] type      : %s\n", ggml_type_to_string(node->src[0]->type));
+                }
+
+                if (node->src[1]) {
+                    printf("src[1] name      : %s\n", node->src[1]->name);
+                    printf("src[1] shape     : [%lld, %lld]\n", node->src[1]->ne[1], node->src[1]->ne[0]);
+                    printf("src[1] type      : %s\n", ggml_type_to_string(node->src[1]->type));
+                }
+                printf("%dth thread among %d threads\n", state->ith, state->threadpool->n_threads_max);
+                //printf("current_core = %d\n", cpu);
+                printf("start_time: %f ms\n", start_time);
+                printf("end_time: %f ms\n", start_time);
+                printf("compute_duration: %f ms\n", compute_duration);
+                printf("sync_duration: %f ms\n", sync_duration);
+                printf("sum_of_duration: %f ms\n", compute_duration + sync_duration);
+                printf("\n");
+                printf("=======================================\n\n");
+            }
         }
     }
 

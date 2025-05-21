@@ -120,6 +120,7 @@
 #include "ggml-hexagon.h"
 #include "ggml-impl.h"
 #include "ggml-backend-impl.h"
+#include <omp.h>
 
 #include "kernels/ggmlop_ap_skel.h"
 
@@ -340,7 +341,7 @@ static struct hexagon_appcfg_t g_hexagon_appcfg = {
         .enable_dlbc            = 1,
         .hwaccel_approach       = HWACCEL_CDSP,
         .hexagon_backend        = HEXAGON_BACKEND_CDSP,
-        .enable_rpc_ion_mempool = 0,
+        .enable_rpc_ion_mempool = 1,
         .enable_rpc_dma_mempool = 0,
         .enable_all_q_mulmat    = 0,
         .cfgfilename            = "ggml-hexagon.cfg",
@@ -5585,6 +5586,125 @@ static void ggml_backend_hexagon_free(ggml_backend_t backend) {
     GGMLHEXAGON_LOG_DEBUG("leave %s", __func__ );
 }
 
+const char* ggml_op_to_string(enum ggml_op op) {
+    switch (op) {
+        case GGML_OP_NONE: return "GGML_OP_NONE";
+        case GGML_OP_DUP: return "GGML_OP_DUP";
+        case GGML_OP_ADD: return "GGML_OP_ADD";
+        case GGML_OP_ADD1: return "GGML_OP_ADD1";
+        case GGML_OP_ACC: return "GGML_OP_ACC";
+        case GGML_OP_SUB: return "GGML_OP_SUB";
+        case GGML_OP_MUL: return "GGML_OP_MUL";
+        case GGML_OP_DIV: return "GGML_OP_DIV";
+        case GGML_OP_SQR: return "GGML_OP_SQR";
+        case GGML_OP_SQRT: return "GGML_OP_SQRT";
+        case GGML_OP_LOG: return "GGML_OP_LOG";
+        case GGML_OP_SUM: return "GGML_OP_SUM";
+        case GGML_OP_SUM_ROWS: return "GGML_OP_SUM_ROWS";
+        case GGML_OP_MEAN: return "GGML_OP_MEAN";
+        case GGML_OP_ARGMAX: return "GGML_OP_ARGMAX";
+        case GGML_OP_REPEAT: return "GGML_OP_REPEAT";
+        case GGML_OP_REPEAT_BACK: return "GGML_OP_REPEAT_BACK";
+        case GGML_OP_CONCAT: return "GGML_OP_CONCAT";
+        case GGML_OP_SILU_BACK: return "GGML_OP_SILU_BACK";
+        case GGML_OP_NORM: return "GGML_OP_NORM";
+        case GGML_OP_RMS_NORM: return "GGML_OP_RMS_NORM";
+        case GGML_OP_RMS_NORM_BACK: return "GGML_OP_RMS_NORM_BACK";
+        case GGML_OP_GROUP_NORM: return "GGML_OP_GROUP_NORM";
+        case GGML_OP_MUL_MAT: return "GGML_OP_MUL_MAT";
+        case GGML_OP_MUL_MAT_ID: return "GGML_OP_MUL_MAT_ID";
+        case GGML_OP_OUT_PROD: return "GGML_OP_OUT_PROD";
+        case GGML_OP_SCALE: return "GGML_OP_SCALE";
+        case GGML_OP_SET: return "GGML_OP_SET";
+        case GGML_OP_CPY: return "GGML_OP_CPY";
+        case GGML_OP_CONT: return "GGML_OP_CONT";
+        case GGML_OP_RESHAPE: return "GGML_OP_RESHAPE";
+        case GGML_OP_VIEW: return "GGML_OP_VIEW";
+        case GGML_OP_PERMUTE: return "GGML_OP_PERMUTE";
+        case GGML_OP_TRANSPOSE: return "GGML_OP_TRANSPOSE";
+        case GGML_OP_GET_ROWS: return "GGML_OP_GET_ROWS";
+        case GGML_OP_GET_ROWS_BACK: return "GGML_OP_GET_ROWS_BACK";
+        case GGML_OP_DIAG: return "GGML_OP_DIAG";
+        case GGML_OP_DIAG_MASK_INF: return "GGML_OP_DIAG_MASK_INF";
+        case GGML_OP_DIAG_MASK_ZERO: return "GGML_OP_DIAG_MASK_ZERO";
+        case GGML_OP_SOFT_MAX: return "GGML_OP_SOFT_MAX";
+        case GGML_OP_SOFT_MAX_BACK: return "GGML_OP_SOFT_MAX_BACK";
+        case GGML_OP_ROPE: return "GGML_OP_ROPE";
+        case GGML_OP_ROPE_BACK: return "GGML_OP_ROPE_BACK";
+        case GGML_OP_CLAMP: return "GGML_OP_CLAMP";
+        case GGML_OP_CONV_TRANSPOSE_1D: return "GGML_OP_CONV_TRANSPOSE_1D";
+        case GGML_OP_IM2COL: return "GGML_OP_IM2COL";
+        case GGML_OP_CONV_TRANSPOSE_2D: return "GGML_OP_CONV_TRANSPOSE_2D";
+        case GGML_OP_POOL_1D: return "GGML_OP_POOL_1D";
+        case GGML_OP_POOL_2D: return "GGML_OP_POOL_2D";
+        case GGML_OP_UPSCALE: return "GGML_OP_UPSCALE";
+        case GGML_OP_PAD: return "GGML_OP_PAD";
+        case GGML_OP_ARANGE: return "GGML_OP_ARANGE";
+        case GGML_OP_TIMESTEP_EMBEDDING: return "GGML_OP_TIMESTEP_EMBEDDING";
+        case GGML_OP_ARGSORT: return "GGML_OP_ARGSORT";
+        case GGML_OP_LEAKY_RELU: return "GGML_OP_LEAKY_RELU";
+        // case GGML_OP_FLASH_ATTN: return "GGML_OP_FLASH_ATTN";
+        // case GGML_OP_FLASH_ATTN_EXT: return "GGML_OP_FLASH_ATTN_EXT";
+        // case GGML_OP_FLASH_FF: return "GGML_OP_FLASH_FF";
+        // case GGML_OP_FLASH_ATTN_BACK: return "GGML_OP_FLASH_ATTN_BACK";
+        case GGML_OP_SSM_CONV: return "GGML_OP_SSM_CONV";
+        case GGML_OP_SSM_SCAN: return "GGML_OP_SSM_SCAN";
+        case GGML_OP_WIN_PART: return "GGML_OP_WIN_PART";
+        case GGML_OP_WIN_UNPART: return "GGML_OP_WIN_UNPART";
+        case GGML_OP_GET_REL_POS: return "GGML_OP_GET_REL_POS";
+        case GGML_OP_ADD_REL_POS: return "GGML_OP_ADD_REL_POS";
+        case GGML_OP_UNARY: return "GGML_OP_UNARY";
+        case GGML_OP_MAP_UNARY: return "GGML_OP_MAP_UNARY";
+        case GGML_OP_MAP_BINARY: return "GGML_OP_MAP_BINARY";
+        case GGML_OP_MAP_CUSTOM1_F32: return "GGML_OP_MAP_CUSTOM1_F32";
+        case GGML_OP_MAP_CUSTOM2_F32: return "GGML_OP_MAP_CUSTOM2_F32";
+        case GGML_OP_MAP_CUSTOM3_F32: return "GGML_OP_MAP_CUSTOM3_F32";
+        case GGML_OP_MAP_CUSTOM1: return "GGML_OP_MAP_CUSTOM1";
+        case GGML_OP_MAP_CUSTOM2: return "GGML_OP_MAP_CUSTOM2";
+        case GGML_OP_MAP_CUSTOM3: return "GGML_OP_MAP_CUSTOM3";
+        case GGML_OP_CROSS_ENTROPY_LOSS: return "GGML_OP_CROSS_ENTROPY_LOSS";
+        case GGML_OP_CROSS_ENTROPY_LOSS_BACK: return "GGML_OP_CROSS_ENTROPY_LOSS_BACK";
+        case GGML_OP_COUNT: return "GGML_OP_COUNT";
+        default: return "UNKNOWN_OP";
+    }
+}
+const char * ggml_type_to_string(enum ggml_type type) {
+    switch (type) {
+        case GGML_TYPE_F32:     return "F32";
+        case GGML_TYPE_F16:     return "F16";
+        case GGML_TYPE_Q4_0:    return "Q4_0";
+        case GGML_TYPE_Q4_1:    return "Q4_1";
+        case GGML_TYPE_Q5_0:    return "Q5_0";
+        case GGML_TYPE_Q5_1:    return "Q5_1";
+        case GGML_TYPE_Q8_0:    return "Q8_0";
+        case GGML_TYPE_Q8_1:    return "Q8_1";
+        case GGML_TYPE_Q2_K:    return "Q2_K";
+        case GGML_TYPE_Q3_K:    return "Q3_K";
+        case GGML_TYPE_Q4_K:    return "Q4_K";
+        case GGML_TYPE_Q5_K:    return "Q5_K";
+        case GGML_TYPE_Q6_K:    return "Q6_K";
+        case GGML_TYPE_Q8_K:    return "Q8_K";
+        case GGML_TYPE_IQ2_XXS: return "IQ2_XXS";
+        case GGML_TYPE_IQ2_XS:  return "IQ2_XS";
+        case GGML_TYPE_IQ3_XXS: return "IQ3_XXS";
+        case GGML_TYPE_IQ1_S:   return "IQ1_S";
+        case GGML_TYPE_IQ4_NL:  return "IQ4_NL";
+        case GGML_TYPE_IQ3_S:   return "IQ3_S";
+        case GGML_TYPE_IQ2_S:   return "IQ2_S";
+        case GGML_TYPE_IQ4_XS:  return "IQ4_XS";
+        case GGML_TYPE_I8:      return "I8";
+        case GGML_TYPE_I16:     return "I16";
+        case GGML_TYPE_I32:     return "I32";
+        case GGML_TYPE_I64:     return "I64";
+        case GGML_TYPE_F64:     return "F64";
+        case GGML_TYPE_IQ1_M:   return "IQ1_M";
+        case GGML_TYPE_BF16:    return "BF16";
+        case GGML_TYPE_TQ1_0:   return "TQ1_0";
+        case GGML_TYPE_TQ2_0:   return "TQ2_0";
+        default:                return "UNKNOWN";
+    }
+}
+
 static enum ggml_status ggmlhexagon_backend_graph_compute_general(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
     enum ggml_status result         = GGML_STATUS_SUCCESS;
     ggml_backend_hexagon_context * ctx  = (ggml_backend_hexagon_context *)backend->context;
@@ -5597,7 +5717,31 @@ static enum ggml_status ggmlhexagon_backend_graph_compute_general(ggml_backend_t
             || node->op == GGML_OP_PERMUTE || node->op == GGML_OP_NONE) {
             continue;
         }
+        double start_time = omp_get_wtime();
         bool ok = ggmlhexagon_compute_forward(backend, node);
+        double end_time = omp_get_wtime();
+        double duration_time = (end_time - start_time) * 1000;
+        if (node->op == GGML_OP_MUL_MAT) {
+            std::cout<<"======================================="<<std::endl;
+            std::cout<<"node : "<<node->name<<std::endl;
+            std::cout<<"op : "<<ggml_op_to_string(node->op)<<std::endl;
+            std::cout<<"type : "<<ggml_type_to_string(node->type)<<std::endl;
+            if (node->src[0]) {
+                std::cout << "src[0] name : " << node->src[0]->name << std::endl;
+                std::cout << "src[0] shape: [" << node->src[0]->ne[1] << ", " << node->src[0]->ne[0] << "]" << std::endl;
+                std::cout << "src[0] type : " << ggml_type_to_string(node->src[0]->type) << std::endl;
+            }
+
+            if (node->src[1]) {
+                std::cout << "src[1] name : " << node->src[1]->name << std::endl;
+                std::cout << "src[1] shape: [" << node->src[1]->ne[1] << ", " << node->src[1]->ne[0] << "]" << std::endl;
+                std::cout << "src[1] type : " << ggml_type_to_string(node->src[1]->type) << std::endl;
+            }
+            std::cout<<"start_time : "<<start_time<<" ms"<<std::endl;
+            std::cout<<"end_time : "<<end_time<<" ms"<<std::endl;
+            std::cout<<"duration_time : "<<duration_time<<" ms"<<std::endl;
+            std::cout<<"======================================="<<std::endl;
+        }
         if (!ok) {
             GGMLHEXAGON_LOG_DEBUG("%s: error: op not supported %s (%s)\n", __func__, node->name, ggml_op_name(node->op));
         }
