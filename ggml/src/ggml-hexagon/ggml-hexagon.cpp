@@ -5003,6 +5003,7 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     struct dsptensor dsptensor_2;
     std::string op_name;
     ggmlhexagon_get_opkey_from_op(op, op_name);
+    std::cout << std::fixed << std::setprecision(9);
     std::cout<<"now_time_0 : "<<omp_get_wtime()<<std::endl;
     hexagon_perf op_perf(op_name);
     op_perf.start();
