@@ -1099,10 +1099,11 @@ static void ggml_compute_forward_mul_mat_one_chunk(
         const int32_t ir0_end,
         const int32_t ir1_start,
         const int32_t ir1_end) {
+    printf("A1 : [%f]\n", omp_get_wtime());
     ggmlhexagon_dump_tensor(src0, 0);
     ggmlhexagon_dump_tensor(src1, 0);
     ggmlhexagon_dump_tensor(dst, 0);
-
+    printf("A2 : [%f]\n", omp_get_wtime());
     dst->ne[0] = src0->ne[1];
     dst->ne[1] = src1->ne[1];
     dst->ne[2] = src1->ne[2];
@@ -1113,7 +1114,7 @@ static void ggml_compute_forward_mul_mat_one_chunk(
     dst->nb[2] = dst->nb[1] * dst->ne[1];
     dst->nb[3] = dst->nb[2] * dst->ne[2];
     ggmlhexagon_dump_tensor(dst, 0);
-
+    printf("A3 : [%f]\n", omp_get_wtime());
     GGML_TENSOR_BINARY_OP_LOCALS
 
     const bool src1_cont = ggml_is_contiguous(src1);
@@ -1131,7 +1132,7 @@ static void ggml_compute_forward_mul_mat_one_chunk(
 
     const void * wdata = (src1->type == vec_dot_type) ? src1->data : params->wdata;
     const size_t row_size = ggml_row_size(vec_dot_type, ne10);
-
+    printf("A4 : [%f]\n", omp_get_wtime());
     assert(ne12 % ne02 == 0);
     assert(ne13 % ne03 == 0);
 
@@ -1144,7 +1145,7 @@ static void ggml_compute_forward_mul_mat_one_chunk(
     // attempt to reduce false-sharing (does not seem to make a difference)
     // 16 * 2, accounting for mmla kernels
     float tmp[32];
-
+    printf("A5 : [%f]\n", omp_get_wtime());
     for (int32_t iir1 = ir1_start; iir1 < ir1_end; iir1 += blck_1) {
         for (int32_t iir0 = ir0_start; iir0 < ir0_end; iir0 += blck_0) {
             for (int32_t ir1 = iir1; ir1 < iir1 + blck_1 && ir1 < ir1_end; ir1 += num_rows_per_vec_dot) {
@@ -1186,6 +1187,7 @@ static void ggml_compute_forward_mul_mat_one_chunk(
             }
         }
     }
+    printf("A6 : [%f]\n", omp_get_wtime());
 }
 
 //FIXME: only support fp32 mulmat on cDSP
