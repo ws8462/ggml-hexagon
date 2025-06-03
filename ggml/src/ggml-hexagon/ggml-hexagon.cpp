@@ -5003,7 +5003,7 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     struct dsptensor dsptensor_2;
     std::string op_name;
     ggmlhexagon_get_opkey_from_op(op, op_name);
-
+    std::cout<<"now_time_0 : "<<omp_get_wtime()<<std::endl;
     hexagon_perf op_perf(op_name);
     op_perf.start();
 
@@ -5014,14 +5014,14 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     ggml_tensor * src0  = op->src[0];
     ggml_tensor * src1  = op->src[1];
     ggml_tensor * dst   = op;
-
+    std::cout<<"now_time_1 : "<<omp_get_wtime()<<std::endl;
     input_tensor_count  =  ggmlhexagon_k_op_caps[ggmlhexagon_get_op_index(op)].input_param_count;
     op_func             =  ggmlhexagon_k_op_caps[ggmlhexagon_get_op_index(op)].dsp_op_func;
     if (nullptr == op_func) {
         GGMLHEXAGON_LOG_DEBUG("op GGML_OP_%s and dsp func %s not supported on cCSP", ggml_op_name(op->op), ggmlhexagon_k_op_caps[ggmlhexagon_get_op_index(op)].hexagon_op_name);
         return;
     }
-
+    std::cout<<"now_time_2 : "<<omp_get_wtime()<<std::endl;
     //FIXME:try to fully understand the tech detail in qidl:
     // qidl is a binary tool to generate some very complicated and hard-to customized bridge-layer codes
     // between ARM-AP and cDSP. the mechanism in qidl/FastRPC is exactly similar to mechanism in TEE.
@@ -5040,7 +5040,7 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     dsptensor_0.nb[1] = src0->nb[1];
     dsptensor_0.nb[2] = src0->nb[2];
     dsptensor_0.nb[3] = src0->nb[3];
-
+    std::cout<<"now_time_3 : "<<omp_get_wtime()<<std::endl;
     if (2 == input_tensor_count) {
         GGML_ASSERT(nullptr != src1);
         dsptensor_1.data        = src1->data;
@@ -5056,8 +5056,9 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
         dsptensor_1.nb[1] = src1->nb[1];
         dsptensor_1.nb[2] = src1->nb[2];
         dsptensor_1.nb[3] = src1->nb[3];
+        std::cout<<"now_time_3_1 : "<<omp_get_wtime()<<std::endl;
     }
-
+    std::cout<<"now_time_4 : "<<omp_get_wtime()<<std::endl;
     dsptensor_2.data        = dst->data;
     dsptensor_2.data_len    = ggml_nbytes(dst);
     dsptensor_2.type        = dst->type;
@@ -5071,15 +5072,17 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     dsptensor_2.nb[1] = dst->nb[1];
     dsptensor_2.nb[2] = dst->nb[2];
     dsptensor_2.nb[3] = dst->nb[3];
-
+    std::cout<<"now_time_5 : "<<omp_get_wtime()<<std::endl;
     memcpy(dsptensor_2.op_params, dst->op_params, GGML_MAX_OP_PARAMS / sizeof(int32_t));
-
+    std::cout<<"now_time_6 : "<<omp_get_wtime()<<std::endl;
     hexagon_error = op_func(ctx->ggmlop_handle, &dsptensor_0, &dsptensor_1, &dsptensor_2);
+    std::cout<<"now_time_7 : "<<omp_get_wtime()<<std::endl;
     if (AEE_SUCCESS != hexagon_error) {
         GGMLHEXAGON_LOG_WARN("ggmlop %s computation fail on cdsp", ggml_op_name(op->op));
     }
 
     op_perf.info();
+    std::cout<<"now_time_8 : "<<omp_get_wtime()<<std::endl;
     return;
 }
 
