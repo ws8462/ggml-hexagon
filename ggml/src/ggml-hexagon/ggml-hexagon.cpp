@@ -1923,7 +1923,7 @@ static void * ggmlhexagon_type_trait(ggml_backend_hexagon_context * ctx, ggml_te
     return wdata;
 }
 
-static void * ggmlhexagon_type_trait_tmp(ggml_backend_hexagon_context * ctx, ggml_tensor * op) {
+static void * ggmlhexagon_type_trait_activation_to_fp16(ggml_backend_hexagon_context * ctx, ggml_tensor * op) {
     const ggml_tensor * src0        = op->src[0];
     const ggml_tensor * src1        = op->src[1];  // 변환 대상
     ggml_tensor * dst               = op;
@@ -1991,6 +1991,98 @@ static void * ggmlhexagon_type_trait_tmp(ggml_backend_hexagon_context * ctx, ggm
         }
         ctx->tasks.clear();
     }
+
+    return wdata;
+}
+
+static void * ggmlhexagon_type_trait_weight_to_fp16(ggml_backend_hexagon_context * ctx, ggml_tensor * op) {
+    const ggml_tensor * src0 = op->src[0];
+    const ggml_tensor * src1 = op->src[1];
+    ggml_tensor * dst        = op;
+    const enum ggml_type src0_type = src0->type;
+
+    GGML_TENSOR_BINARY_OP_LOCALS
+
+    GGML_ASSERT(ne0 == ne01);
+    GGML_ASSERT(ne1 == ne11);
+    GGML_ASSERT(ne2 == ne12);
+    GGML_ASSERT(ne3 == ne13);
+    GGML_ASSERT(nb00 == ggml_type_size(src0_type));
+    GGML_ASSERT(nb10 == ggml_type_size(src1->type));
+
+    // ---- 타깃을 FP16으로 변경 ----
+    const enum ggml_type target_type = GGML_TYPE_F16;
+    const size_t target_esize = ggml_type_size(target_type);
+
+    const int64_t ne_plane = ne01 * ne00; // rows * cols of a matrix plane
+    const size_t  desired_size = (src0_type == target_type) ? 0
+                                : (size_t)ne03 * (size_t)ne02 * (size_t)ne_plane * target_esize;
+    ctx->desired_size = desired_size;
+
+    if (ctx->work_size < desired_size) {
+        ctx->work_data.reset(new char[desired_size]);
+        ctx->work_size = desired_size;
+    }
+    ctx->n_threads = std::thread::hardware_concurrency();
+
+    void * wdata = ctx->work_data.get();
+
+    // src0이 이미 FP16이면 변환 불필요
+    if (src0_type == target_type) {
+        return wdata; // desired_size = 0 (caller가 src0->data를 직접 쓰게 됨)
+    }
+
+    // ---- src0 → FP16 변환 ----
+    // 1) 각 row를 to_float()로 F32 임시 버퍼에 꺼낸 뒤
+    // 2) ggml_fp32_to_fp16_row()로 FP16으로 변환하여 wdata에 저장
+    const auto * type_traits       = ggml_get_type_traits(src0_type);
+    ggml_to_float_t const to_float = type_traits->to_float;
+
+    // 타일 인덱싱 보정(쓰기 위치 계산을 명시적으로)
+    auto plane_base = [&](int64_t i03, int64_t i02) -> size_t {
+        return (size_t)i03 * (size_t)ne02 * (size_t)ne_plane +
+               (size_t)i02 * (size_t)ne_plane;
+    };
+
+    for (int64_t i03 = 0; i03 < ne03; ++i03) {
+        for (int64_t i02 = 0; i02 < ne02; ++i02) {
+            const char * x = (const char *)src0->data + i02 * nb02 + i03 * nb03;
+            ggml_fp16_t * wplane = (ggml_fp16_t *)wdata + plane_base(i03, i02);
+
+            const int min_cols_per_thread = 4096;
+            const int min_rows_per_thread = std::max((int)(min_cols_per_thread / ne00), 1);
+            const int n_threads = std::max(std::min(ctx->n_threads, (int)(ne01 / min_rows_per_thread)), 1);
+
+            // worker threads
+            for (int i = 1; i < n_threads; ++i) {
+                const int64_t start = i * ne01 / n_threads;
+                const int64_t end   = (i + 1) * ne01 / n_threads;
+                if (start < end) {
+                    ctx->tasks.push_back(std::async(std::launch::async, [=]() {
+                        std::vector<float> tmp(ne00);
+                        for (int64_t i01 = start; i01 < end; ++i01) {
+                            to_float(x + i01 * nb01, tmp.data(), ne00);                    // → F32 tmp
+                            ggml_fp32_to_fp16_row(tmp.data(), wplane + i01 * ne00, ne00); // tmp → FP16
+                        }
+                    }));
+                }
+            }
+            // current thread도 처리
+            {
+                std::vector<float> tmp(ne00);
+                const int64_t start = 0;
+                const int64_t end   = ne01 / n_threads;
+                for (int64_t i01 = start; i01 < end; ++i01) {
+                    to_float(x + i01 * nb01, tmp.data(), ne00);
+                    ggml_fp32_to_fp16_row(tmp.data(), wplane + i01 * ne00, ne00);
+                }
+            }
+        }
+    }
+
+    // join
+    for (auto &task : ctx->tasks) task.get();
+    ctx->tasks.clear();
 
     return wdata;
 }
@@ -4924,7 +5016,9 @@ static void ggmlqnn_compute_mul_mat_4d_tmp(ggml_backend_hexagon_context * ctx, g
 
     const enum ggml_type src1_type  = src1->type;
     std::cout<<"now_time_1 : "<<ggml_time_us()<<" ms"<<std::endl;
-    void * wdata                                = ggmlhexagon_type_trait(ctx, op);
+    void * wdata = ggmlhexagon_type_trait_weight_to_fp16(ctx, op);
+    void * wdata_activation = ggmlhexagon_type_trait_activation_to_fp16(ctx, op);
+    // void * wdata_weight = 
     const size_t desired_size                   = ctx->desired_size;
     std::cout<<"now_time_2 : "<<ggml_time_us()<<" ms"<<std::endl;
     GGMLQNN_CHECK_PARAMS(ctx, src0, src1, dst);
@@ -4961,14 +5055,14 @@ static void ggmlqnn_compute_mul_mat_4d_tmp(ggml_backend_hexagon_context * ctx, g
     } else {
         CHECK_QNN_API(error, qnn_raw_interface.graphCreate(instance->get_qnn_context_handle(), graph_name.c_str(), NULL, &graph_handle));
 
-        uint32_t src0_dims[] = {static_cast<uint32_t>(src0->ne[3]), static_cast<uint32_t>(src0->ne[2]),
-                                static_cast<uint32_t>(src0->ne[1]), static_cast<uint32_t>(src0->ne[0])
+        uint32_t src0_dims[] = {static_cast<uint32_t>(src0->ne[3]), 4,
+                                16, static_cast<uint32_t>(src0->ne[0])
         };
         uint32_t src1_dims[] = {static_cast<uint32_t>(src1->ne[3]), static_cast<uint32_t>(src1->ne[2]),
                                 static_cast<uint32_t>(src1->ne[1]), static_cast<uint32_t>(src1->ne[0])
         };
-        uint32_t reshape2_out_dims[] = {static_cast<uint32_t>(dst->ne[3]), static_cast<uint32_t>(dst->ne[2]),
-                                        static_cast<uint32_t>(dst->ne[1]), static_cast<uint32_t>(dst->ne[0])
+        uint32_t reshape2_out_dims[] = {static_cast<uint32_t>(dst->ne[3]), static_cast<uint32_t>(dst->ne[2])/2,
+                                        static_cast<uint32_t>(dst->ne[1])/2, static_cast<uint32_t>(dst->ne[0])
         };
 
         // 원본 ggml 모양도 같이 확인(선택)
@@ -4986,36 +5080,15 @@ static void ggmlqnn_compute_mul_mat_4d_tmp(ggml_backend_hexagon_context * ctx, g
                                 << (long long)dst->ne[0]  << "]\n";
         std::cout<<"came here_1"<<std::endl;
         p_tensor0 = ggmlqnn_create_general_tensor(instance, graph_handle, src0, "input0",
-                                                  QNN_TENSOR_TYPE_APP_WRITE, QNN_DATATYPE_FLOAT_32, 4,
+                                                  QNN_TENSOR_TYPE_APP_WRITE, QNN_DATATYPE_FLOAT_16, 4,
                                                   src0_dims, nullptr, 0);
         std::cout<<"came here_2"<<std::endl;
         p_tensor1 = ggmlqnn_create_general_tensor(instance, graph_handle, src1, "input1",
-                                                  QNN_TENSOR_TYPE_APP_WRITE, QNN_DATATYPE_FLOAT_32, 4,
+                                                  QNN_TENSOR_TYPE_APP_WRITE, QNN_DATATYPE_FLOAT_16, 4,
                                                   src1_dims, nullptr, 0);
         std::cout<<"came here_3"<<std::endl;
-        // uint32_t perm_data[] = {0, 1, 3, 2};
-        // uint32_t perm_dims[] = {4};
-        // Qnn_Tensor_t * p_perm = ggmlqnn_create_general_tensor(instance, graph_handle, nullptr, "perm",
-        //                                                       QNN_TENSOR_TYPE_STATIC, QNN_DATATYPE_UINT_32, 1,
-        //                                                       perm_dims, perm_data, sizeof(perm_data));
-
-        // uint32_t permute1_out_dims[] = {static_cast<uint32_t>(src1->ne[3]), static_cast<uint32_t>(src1->ne[2]),
-        //                                 static_cast<uint32_t>(src1->ne[0]), static_cast<uint32_t>(src1->ne[1])
-        // };
-        // p_permute1_out = ggmlqnn_create_general_tensor(instance, graph_handle, nullptr, "permute1_out",
-        //                                                QNN_TENSOR_TYPE_NATIVE, QNN_DATATYPE_FLOAT_32, 4,
-        //                                                permute1_out_dims, nullptr, 0);
-
-        // Qnn_Param_t permute1_params[]   = {{.paramType = QNN_PARAMTYPE_TENSOR, .name = "perm", .tensorParam = *p_perm}};
-        // Qnn_Tensor_t permute1_inputs[]  = {*p_tensor1};
-        // Qnn_Tensor_t permute1_outputs[] = {*p_permute1_out};
-        // Qnn_OpConfig_t permute1_op      = ggmlqnn_create_op_config("permute1", QNN_OP_PACKAGE_NAME_QTI_AISW,
-        //                                                            QNN_OP_TRANSPOSE, permute1_params, 1,
-        //                                                            permute1_inputs, 1, permute1_outputs, 1);
-        // CHECK_QNN_API(error, qnn_raw_interface.graphAddNode(graph_handle, permute1_op));
-        
         p_reshape2_out = ggmlqnn_create_general_tensor(instance, graph_handle, dst, "output",
-                                                       QNN_TENSOR_TYPE_APP_READ, QNN_DATATYPE_FLOAT_32, 4,
+                                                       QNN_TENSOR_TYPE_APP_READ, QNN_DATATYPE_FLOAT_16, 4,
                                                        reshape2_out_dims, nullptr, 0);
         std::cout<<"came here_4"<<std::endl;
         Qnn_Tensor_t inputs[2]  = {*p_tensor0, *p_tensor1};
@@ -5482,7 +5555,7 @@ static void ggmlqnn_compute_mul_mat_FP16(ggml_backend_hexagon_context * ctx, ggm
         return ggmlqnn_compute_mul_mat_4d(ctx, op);
     }
 
-    void * wdata                                = ggmlhexagon_type_trait_tmp(ctx, op);
+    void * wdata                                = ggmlhexagon_type_trait_activation_to_fp16(ctx, op);
     const size_t desired_size                   = ctx->desired_size;
     
     if (ctx->qnn_singlenode_graph_map.find(graph_name) != ctx->qnn_singlenode_graph_map.end()) {
