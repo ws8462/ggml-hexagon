@@ -4984,15 +4984,15 @@ static void ggmlqnn_compute_mul_mat_4d_tmp(ggml_backend_hexagon_context * ctx, g
                                 << (long long)dst->ne[2]  << ", "
                                 << (long long)dst->ne[1]  << ", "
                                 << (long long)dst->ne[0]  << "]\n";
-
+        std::cout<<"came here_1"<<std::endl;
         p_tensor0 = ggmlqnn_create_general_tensor(instance, graph_handle, src0, "input0",
                                                   QNN_TENSOR_TYPE_APP_WRITE, QNN_DATATYPE_FLOAT_32, 4,
                                                   src0_dims, nullptr, 0);
-
+        std::cout<<"came here_2"<<std::endl;
         p_tensor1 = ggmlqnn_create_general_tensor(instance, graph_handle, src1, "input1",
                                                   QNN_TENSOR_TYPE_APP_WRITE, QNN_DATATYPE_FLOAT_32, 4,
                                                   src1_dims, nullptr, 0);
-
+        std::cout<<"came here_3"<<std::endl;
         // uint32_t perm_data[] = {0, 1, 3, 2};
         // uint32_t perm_dims[] = {4};
         // Qnn_Tensor_t * p_perm = ggmlqnn_create_general_tensor(instance, graph_handle, nullptr, "perm",
@@ -5017,26 +5017,27 @@ static void ggmlqnn_compute_mul_mat_4d_tmp(ggml_backend_hexagon_context * ctx, g
         p_reshape2_out = ggmlqnn_create_general_tensor(instance, graph_handle, dst, "output",
                                                        QNN_TENSOR_TYPE_APP_READ, QNN_DATATYPE_FLOAT_32, 4,
                                                        reshape2_out_dims, nullptr, 0);
-
+        std::cout<<"came here_4"<<std::endl;
         Qnn_Tensor_t inputs[2]  = {*p_tensor0, *p_tensor1};
         Qnn_Tensor_t outputs[1] = {*p_reshape2_out};
-
+        
         Qnn_Param_t params[2];
         uint32_t pcount = 0;
         params[pcount++] = makeBoolParam(QNN_OP_MAT_MUL_PARAM_TRANSPOSE_IN0, false); //true면 전치
         params[pcount++] = makeBoolParam(QNN_OP_MAT_MUL_PARAM_TRANSPOSE_IN1, true); //true면 전치
-
+        std::cout<<"came here_5"<<std::endl;
         Qnn_OpConfig_t reshape2_op = ggmlqnn_create_op_config("matmul", QNN_OP_PACKAGE_NAME_QTI_AISW,
                                                                    QNN_OP_MAT_MUL, params, pcount,
                                                                    inputs, 2, outputs, 1);
         CHECK_QNN_API(error, qnn_raw_interface.graphAddNode(graph_handle, reshape2_op));
-
+        std::cout<<"came here_6"<<std::endl;
         // Finalize
         CHECK_QNN_API(error, qnn_raw_interface.graphFinalize(graph_handle, NULL, NULL));
-
+        std::cout<<"came here_7"<<std::endl;
         // Cache
         qnn_ptensors_t ggml_op_mulmat_tensors = {p_tensor0, p_tensor1, p_reshape2_out};
         ctx->qnn_singlenode_graph_map[graph_name] = std::make_tuple(graph_handle, ggml_op_mulmat_tensors);
+        std::cout<<"came here_8"<<std::endl;
     }
 
     // Execute
