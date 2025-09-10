@@ -4984,7 +4984,7 @@ static void ggmlqnn_compute_mul_mat_4d_tmp(ggml_backend_hexagon_context * ctx, g
                                 << (long long)dst->ne[2]  << ", "
                                 << (long long)dst->ne[1]  << ", "
                                 << (long long)dst->ne[0]  << "]\n";
-                                
+
         p_tensor0 = ggmlqnn_create_general_tensor(instance, graph_handle, src0, "input0",
                                                   QNN_TENSOR_TYPE_APP_WRITE, QNN_DATATYPE_FLOAT_32, 4,
                                                   src0_dims, nullptr, 0);
@@ -5024,7 +5024,7 @@ static void ggmlqnn_compute_mul_mat_4d_tmp(ggml_backend_hexagon_context * ctx, g
         Qnn_Param_t params[2];
         uint32_t pcount = 0;
         params[pcount++] = makeBoolParam(QNN_OP_MAT_MUL_PARAM_TRANSPOSE_IN0, false); //true면 전치
-        params[pcount++] = makeBoolParam(QNN_OP_MAT_MUL_PARAM_TRANSPOSE_IN1, false); //true면 전치
+        params[pcount++] = makeBoolParam(QNN_OP_MAT_MUL_PARAM_TRANSPOSE_IN1, true); //true면 전치
 
         Qnn_OpConfig_t reshape2_op = ggmlqnn_create_op_config("matmul", QNN_OP_PACKAGE_NAME_QTI_AISW,
                                                                    QNN_OP_MAT_MUL, params, pcount,
